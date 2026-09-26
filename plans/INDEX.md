@@ -9,7 +9,7 @@ in its `state.md` Task Status table is DONE.
 
 ## V1 — build these
 
-- [ ] `01-project-setup` — **Project Setup** (V1) — depends on: none
+- [x] `01-project-setup` — **Project Setup** (V1) — depends on: none
   - 1.1 Scaffold the Next.js application
   - 1.2 Establish the folder structure
   - 1.3 Environment variable configuration
