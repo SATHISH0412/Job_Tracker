@@ -30,15 +30,17 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 01 needs its PR opened by hand.** All 5 tasks are DONE and pushed to
-  `feature/01-project-setup/scaffold-app`, but `gh` is not installed, so the
-  PR into `dev` must be created here:
+- **Plan 01 needs its PR opened.** All 5 tasks are DONE and pushed to
+  `feature/01-project-setup/scaffold-app`. `gh` 2.101.0 is installed but not
+  authenticated; run `gh auth login` once, after which the PR is opened with
+  `gh pr create --base dev --head feature/01-project-setup/scaffold-app`.
+  Until then create it here:
   https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
   Do not merge it until the branch has been reviewed.
-- **GitHub repo settings need doing by hand.** The default branch is probably
-  `dev` (it was pushed first); it should be `main`. Branch protection is not
-  yet enabled on `main` or `dev`. Until it is, the "protected branch" rule is
-  a convention this agent follows, not one GitHub enforces.
+- **GitHub repo settings.** The default branch is probably `dev` (it was
+  pushed first); it should be `main`. Branch protection is not yet enabled on
+  `main` or `dev`. Until it is, the "protected branch" rule is a convention
+  this agent follows, not one GitHub enforces.
 - Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists, and
   `lib/env.ts` is a fourth `lib/` file not shown in `ORIGINAL_PLAN.md` §7.
   Any plan text that names the config file is now wrong and must be adjusted.

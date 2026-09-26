@@ -106,6 +106,13 @@ An unlogged deviation is a process failure — log it or don't do it.
   was left unchanged. Verified the compiled `.app-container` rule, both pages
   rendering 200 inside the same shell, one `globals.css` import, and no
   `max-w-*`/`px-6` re-declared in any page.
+- 2026-09-26: Plan 01 complete (5/5) and the branch was pushed. `gh` CLI
+  2.101.0 was then installed via winget, but it is unauthenticated and
+  `gh auth login` is interactive, so the user must run it once before PRs
+  can be opened automatically. While checking this, two doc edits were made
+  on the wrong branch (`dev`) and had to be redone here — no content was
+  lost, but it is a reminder to confirm `git branch --show-current` before
+  editing plan files.
 
 
 ## Blockers
@@ -114,8 +121,9 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-All five tasks are DONE. The plan PR into `dev` still has to be opened —
-`gh` is not installed, so the user creates it manually at:
+All five tasks are DONE. The plan PR into `dev` still has to be opened.
+`gh` 2.101.0 is installed but not authenticated — `gh auth login` is
+interactive, so run it once. Until then, create the PR manually at:
 
 https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
 
@@ -131,23 +139,24 @@ https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/sca
 - `npm run typecheck` only passes **after** a build or dev run has generated
   `.next/types`. `LayoutProps<"/">` in `app/layout.tsx` is a Next 16
   generated type. On a clean clone, run `npm run build` first.
-- `job-agent/public/` is empty and therefore not tracked by git. Task 1.2
-  must add a `.gitkeep` or the folder disappears on a fresh clone.
-- `gh` CLI is **not installed** on this machine. Per `AGENTS.md` §5a this
-  means branches get pushed but PRs are created manually by the user until
-  `gh` is installed.
+- `job-agent/public/` is tracked via `public/.gitkeep`, added in task 1.2,
+  so the folder survives a fresh clone.
+- `gh` CLI 2.101.0 is installed at `C:\Program Files\GitHub CLI\gh.exe`, but
+  is **not authenticated**. `gh auth login` is interactive, so the user runs
+  it once. After that, plan PRs are opened with
+  `gh pr create --base dev --head <branch>` per `AGENTS.md` §5a.
 - Git identity is resolved and working: `SATHISH0412` /
   `sathishksv0412@gmail.com` (global config). The earlier placeholder came
   from a local override in the unrelated `C:\Users\lenovo` repo, which no
   longer applies now that this project has its own repo.
-- Task 1.4 was pulled forward (see Deviation Log). Its remaining criteria —
-  the initial commit, both branches pushed, and the ignore checks — are
-  still to be verified in this plan.
-- Remote `main` and `dev` both exist now, both at `8f4b37d`. The GitHub
-  **default branch is probably `dev`**, because `dev` was pushed first, and
-  neither branch has protection rules. The user must set the default branch
-  to `main` and enable protection on both in the GitHub UI — `gh` is not
-  installed, so this cannot be scripted from here.
+- Task 1.4 was pulled forward (see Deviation Log) and finished in this plan;
+  all six of its criteria are verified.
+- Remote `main` and `dev` both exist, both at `8f4b37d`. The GitHub **default
+  branch is probably `dev`**, because `dev` was pushed first, and neither
+  branch has protection rules. Once `gh` is authenticated this can be fixed
+  with `gh repo edit --default-branch main` plus
+  `gh api -X PUT repos/:owner/:repo/branches/main/protection`; until then the
+  user does it in the GitHub UI.
 - 7 of the 9 deviation-log rows above were agent decisions; the user has now
   approved all of them.
 - `03-linkedin-search` task 3.3 lists `job-agent/lib/errors.ts` among its
