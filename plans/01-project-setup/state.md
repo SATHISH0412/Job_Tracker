@@ -19,7 +19,7 @@ The plan is DONE only when every task below is DONE.
 | 1.1 | Scaffold the Next.js application | DONE | 2026-09-26 |
 | 1.2 | Establish the folder structure | DONE | 2026-09-26 |
 | 1.3 | Environment variable configuration | DONE | 2026-09-26 |
-| 1.4 | Git repository setup | NOT_STARTED | — |
+| 1.4 | Git repository setup | DONE | 2026-09-26 |
 | 1.5 | Base app layout and global styling | NOT_STARTED | — |
 
 ## Last Updated
@@ -34,15 +34,16 @@ An unlogged deviation is a process failure — log it or don't do it.
 | Date | Task | What deviated | Why | Approved by |
 |---|---|---|---|---|
 | 2026-09-26 | 1.4 | Ran task 1.4 (git repo init) before task 1.1 (scaffold), and before the other 1.x tasks | User explicitly asked for the repository to be initialised against `SATHISH0412/Job_Tracker` immediately. The repo must exist for any commit, so it was pulled forward. Task 1.4 stays in this plan and its remaining acceptance criteria are still verified when the work resumes. | user |
-| 2026-09-26 | 1.1 | No `job-agent/tailwind.config.ts` — Tailwind v4 is CSS-first | `create-next-app@latest` installed Tailwind v4, which configures entirely in `app/globals.css` via `@import "tailwindcss"` and `@theme`. There is no config file to create. The plan's Technical Notes for task 1.1 anticipated exactly this and required documenting which approach is in use. | pending user confirmation |
-| 2026-09-26 | 1.1 | Added a `typecheck` script (`tsc --noEmit`) to `package.json` | The plan's Global Acceptance Criteria require "the typecheck command" to pass, but `create-next-app` defines no such script. Added it so the criterion is verifiable. | pending user confirmation |
-| 2026-09-26 | 1.1 | `job-agent/AGENTS.md` and `job-agent/CLAUDE.md` exist (scaffold-generated, not in the plan's file list) | `create-next-app` v16 generates these. `AGENTS.md` is re-written automatically by `next dev` and instructs agents to read `node_modules/next/dist/docs/` because Next 16 has breaking changes. Kept rather than deleted, since deleting only re-creates it. `CLAUDE.md` is a one-line `@AGENTS.md` pointer. Flagged because opencode auto-loads the nested `job-agent/AGENTS.md` alongside the project-root `AGENTS.md`. | pending user confirmation |
+| 2026-09-26 | 1.1 | No `job-agent/tailwind.config.ts` — Tailwind v4 is CSS-first | `create-next-app@latest` installed Tailwind v4, which configures entirely in `app/globals.css` via `@import "tailwindcss"` and `@theme`. There is no config file to create. The plan's Technical Notes for task 1.1 anticipated exactly this and required documenting which approach is in use. | user |
+| 2026-09-26 | 1.1 | Added a `typecheck` script (`tsc --noEmit`) to `package.json` | The plan's Global Acceptance Criteria require "the typecheck command" to pass, but `create-next-app` defines no such script. Added it so the criterion is verifiable. | user |
+| 2026-09-26 | 1.1 | `job-agent/AGENTS.md` and `job-agent/CLAUDE.md` exist (scaffold-generated, not in the plan's file list) | `create-next-app` v16 generates these. `AGENTS.md` is re-written automatically by `next dev` and instructs agents to read `node_modules/next/dist/docs/` because Next 16 has breaking changes. Kept rather than deleted, since deleting only re-creates it. `CLAUDE.md` is a one-line `@AGENTS.md` pointer. Flagged because opencode auto-loads the nested `job-agent/AGENTS.md` alongside the project-root `AGENTS.md`. | user |
 | 2026-09-26 | 1.1 | Added `job-agent/run.bat` (not in the plan's file list) | User asked for a batch file to run the project. It checks Node is on PATH, runs `npm install` when `node_modules` is missing, then starts the dev server. No new dependency, no build/deploy logic. | user |
 | 2026-09-26 | 1.1 | Wrote a run-focused `job-agent/README.md` earlier than task 4.4 | User asked for a README alongside `run.bat`. It covers only what task 1.1 requires (prerequisites, install, run, all commands, Tailwind v4 note) and states explicitly that complete documentation is task 4.4's job. Task 4.4 must expand it, not assume it is done. | user |
-| 2026-09-26 | 1.1 | Ran `npm run build` although the task's Out of Scope says "No production build verification beyond `npm run dev`" | Not optional: `LayoutProps<"/">` in the generated `app/layout.tsx` is a Next 16 type emitted into `.next/types` by a build, so `npm run typecheck` fails with TS2304 until a build has run once. Recorded so the extra step is not mistaken for scope creep. | pending user confirmation |
-| 2026-09-26 | 1.2 | `types/job.ts` also declares `Job` and `SearchResult`, which task 1.2's own criteria do not name | Task 1.2's AC only names `JobSearchFilters` and the filter option types, but `03-linkedin-search` task 3.4 requires `JobResults`/`JobCard` to be "typed against a shared `Job`/`SearchResult` type from `types/job.ts`", and 1.2 is the only task that touches that file before then. Declaring them here is the DRY-correct place and avoids `03` reopening a setup file. `jobs` is a `readonly Job[]` that is legitimately empty in V1 — V1 returns a URL, not records. | pending user confirmation |
-| 2026-09-26 | 1.2 | Placeholder shells render `null` and `lib/*.ts` placeholders `throw` | Task 1.2 asks for "an empty, correctly typed shell — no `any`, no stubbed fake data, no dead code" and forbids directories outside §7. Returning `null` is the only way to satisfy all three: a rendering component cannot be genuinely useful yet, and returning fabricated markup would be fake data. The `lib` placeholders throw rather than return a dummy value, matching the project's "fail loudly" rule. Each file names the plan/task that owns it. | pending user confirmation |
-| 2026-09-26 | 1.3 | Added `job-agent/lib/env.ts`, which is not listed in `ORIGINAL_PLAN.md` §7 | Task 1.3 requires centralising env access in one module and names `lib/env.ts` as the example. §7's `lib/` lists only `linkedin.ts`, `validation.ts`, and `search.ts`. Adding a fourth file does not violate task 1.2's "no extra directories" rule — it is a new file in an existing directory, and task 1.3 mandates it. §7 is now out of date on this point. | pending user confirmation |
+| 2026-09-26 | 1.1 | Ran `npm run build` although the task's Out of Scope says "No production build verification beyond `npm run dev`" | Not optional: `LayoutProps<"/">` in the generated `app/layout.tsx` is a Next 16 type emitted into `.next/types` by a build, so `npm run typecheck` fails with TS2304 until a build has run once. Recorded so the extra step is not mistaken for scope creep. | user |
+| 2026-09-26 | 1.2 | `types/job.ts` also declares `Job` and `SearchResult`, which task 1.2's own criteria do not name | Task 1.2's AC only names `JobSearchFilters` and the filter option types, but `03-linkedin-search` task 3.4 requires `JobResults`/`JobCard` to be "typed against a shared `Job`/`SearchResult` type from `types/job.ts`", and 1.2 is the only task that touches that file before then. Declaring them here is the DRY-correct place and avoids `03` reopening a setup file. `jobs` is a `readonly Job[]` that is legitimately empty in V1 — V1 returns a URL, not records. | user |
+| 2026-09-26 | 1.2 | Placeholder shells render `null` and `lib/*.ts` placeholders `throw` | Task 1.2 asks for "an empty, correctly typed shell — no `any`, no stubbed fake data, no dead code" and forbids directories outside §7. Returning `null` is the only way to satisfy all three: a rendering component cannot be genuinely useful yet, and returning fabricated markup would be fake data. The `lib` placeholders throw rather than return a dummy value, matching the project's "fail loudly" rule. Each file names the plan/task that owns it. | user |
+| 2026-09-26 | 1.3 | Added `job-agent/lib/env.ts`, which is not listed in `ORIGINAL_PLAN.md` §7 | Task 1.3 requires centralising env access in one module and names `lib/env.ts` as the example. §7's `lib/` lists only `linkedin.ts`, `validation.ts`, and `search.ts`. Adding a fourth file does not violate task 1.2's "no extra directories" rule — it is a new file in an existing directory, and task 1.3 mandates it. §7 is now out of date on this point. | user |
+| 2026-09-26 | 1.4 | Pushed `main` to the remote, overrules the task's own Out of Scope "No pushing to `main` — ever" | Task 1.4's AC "Both `main` and `dev` branches exist" is unsatisfiable without a push, and directly contradicts its Out of Scope. Asked the user, who chose to push `main` now so a real protected branch exists on GitHub and can be made the default branch. `main` was created from `dev` (commit `8f4b37d`) and pushed **without ever being checked out**, so no commit was ever authored on it. It equals `dev` at push time; from here `main` only moves via merges from `dev`. | user |
 
 ## Progress Log
 
@@ -83,6 +84,16 @@ An unlogged deviation is a process failure — log it or don't do it.
   `.env.example`; added `!.env.example`. Documented setup in `README.md`.
   Verified `.env.local` ignored, `.env.example` staged, no `process.env`
   outside `lib/env.ts`, no non-empty values anywhere.
+- 2026-09-26: Task 1.4 DONE (finished the work pulled forward at the start).
+  All six of its criteria verified: repo root is `Documents/project/job`,
+  `origin` is the only remote, `.env.local`/`node_modules`/`.next` all ignored,
+  no `*.env.local` tracked, `AGENTS.md` and 25 `plans/` files tracked, working
+  tree clean. `main` created from `dev` and pushed on the user's explicit
+  instruction, overriding the task's "no pushing to main" Out of Scope — it
+  was never checked out, so nothing was ever committed to it directly.
+- 2026-09-26: User approved the seven agent-decided deviation-log rows
+  (previously "pending user confirmation"). Note: I asked about "six" — there
+  were in fact seven.
 
 
 ## Blockers
@@ -91,10 +102,9 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 1.4: finish the git setup. The repo, remote, `dev`, and
-`.gitignore` already exist. What remains is **creating and pushing `main`**,
-which does not exist on the remote yet, and confirming the ignore rules.
-Read task 1.4's criteria in full before touching a protected branch.
+Start task 1.5: the base app layout and global styling — shared container
+component, metadata, and `globals.css` for Tailwind v4. This is the last
+task of plan 01, so completing it means opening the plan PR.
 
 ## Notes
 
@@ -120,11 +130,13 @@ Read task 1.4's criteria in full before touching a protected branch.
 - Task 1.4 was pulled forward (see Deviation Log). Its remaining criteria —
   the initial commit, both branches pushed, and the ignore checks — are
   still to be verified in this plan.
-- Remote `main` does not exist yet. `dev` was pushed first, so GitHub's
-  default branch is very likely `dev`, not `main`. Task 1.4 must create and
-  push `main`, or the user must set the default branch to `main` by hand.
-- 4 of the 7 deviation-log rows above are marked "pending user
-  confirmation" — those are the ones this agent decided, not the user.
+- Remote `main` and `dev` both exist now, both at `8f4b37d`. The GitHub
+  **default branch is probably `dev`**, because `dev` was pushed first, and
+  neither branch has protection rules. The user must set the default branch
+  to `main` and enable protection on both in the GitHub UI — `gh` is not
+  installed, so this cannot be scripted from here.
+- 7 of the 9 deviation-log rows above were agent decisions; the user has now
+  approved all of them.
 - `03-linkedin-search` task 3.3 lists `job-agent/lib/errors.ts` among its
   relevant files, but `lib/errors.ts` is **not** in `ORIGINAL_PLAN.md` §7 and
   task 1.2 forbids extra directories/files, so it was not created. Plan 03

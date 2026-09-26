@@ -281,12 +281,32 @@ Next.js-appropriate `.gitignore`.
 
 ### Acceptance Criteria
 
-- [ ] `git rev-parse --show-toplevel` prints `Documents/project/job`
-- [ ] `git remote -v` shows only `origin` → the Job_Tracker URL
-- [ ] Both `main` and `dev` branches exist
-- [ ] `git status` is clean after the initial commit
-- [ ] `git check-ignore node_modules .next .env.local` matches all three
-- [ ] No file matching `*.env.local` is tracked
+- [x] `git rev-parse --show-toplevel` prints `Documents/project/job`
+- [x] `git remote -v` shows only `origin` → the Job_Tracker URL
+- [x] Both `main` and `dev` branches exist
+- [x] `git status` is clean after the initial commit
+- [x] `git check-ignore node_modules .next .env.local` matches all three
+- [x] No file matching `*.env.local` is tracked
+
+### Verification evidence (2026-09-26)
+
+- `git rev-parse --show-toplevel` → `C:/Users/lenovo/Documents/project/job`.
+- `git remote -v` → only `origin`, fetch and push both
+  `https://github.com/SATHISH0412/Job_Tracker.git`.
+- `git branch -a` → local `dev`, `main`,
+  `feature/01-project-setup/scaffold-app`; remotes `origin/dev`,
+  `origin/main`, `origin/feature/01-project-setup/scaffold-app`.
+- `main` was created with `git branch main dev` and pushed with
+  `git push -u origin main` — it was **never checked out**, so no commit was
+  authored on it. Both `main` and `dev` are at `8f4b37d`.
+- `git status --short` → empty, branch in sync with its upstream.
+- `git check-ignore -v` → `node_modules` matched by `/node_modules`,
+  `.next` by `/.next/`, `.env.local` by `.env*`.
+- `git ls-files | Select-String env.local` → no match.
+- `AGENTS.md` tracked; 25 files under `plans/` tracked.
+- **Requires a manual follow-up on GitHub:** the default branch is probably
+  `dev` (it was pushed first), and neither `main` nor `dev` has protection
+  rules yet. See the Open items in `plans/PROJECT_STATE.md`.
 
 ### Out of Scope
 

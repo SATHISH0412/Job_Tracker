@@ -8,7 +8,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | IN_PROGRESS | 3/5 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | IN_PROGRESS | 4/5 |
 | 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
@@ -30,15 +30,12 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- `01-project-setup` task 1.4 still needs the repo root and remote verified
-  (done informally: root is `Documents/project/job/`, origin is
-  `SATHISH0412/Job_Tracker.git`) and, critically, `main` **does not exist
-  yet** on the remote — `dev` was pushed first, so GitHub's default branch
-  is probably `dev`. Task 1.4 must create and push `main`.
-- Four rows in `01-project-setup`'s Deviation Log are marked "pending user
-  confirmation" — the Tailwind v4 CSS-first setup, the added `typecheck`
-  script, the scaffold-generated `job-agent/AGENTS.md`/`CLAUDE.md`, and the
-  extra `npm run build` verification step. They need a yes/no.
+- `01-project-setup` task 1.4 DONE. `main` and `dev` both exist on the
+  remote at `8f4b37d`; `main` was pushed on the user's explicit instruction
+  and was never checked out locally. **Still needs doing by hand on GitHub:**
+  set the default branch to `main` (it is currently `dev`, which was pushed
+  first) and enable branch protection on `main` and `dev`.
+- All nine `01-project-setup` deviation-log rows are now user-approved.
 - Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists. Any later
   plan that names that file is now wrong and must be adjusted.
 - `gh` CLI is not installed, so branch pushes work but PR creation is
@@ -65,3 +62,6 @@ Plans `05`–`11` must not be started before that report.
 - 2026-09-26: `01-project-setup` task 1.3 DONE — env handling centralised in
   `lib/env.ts`; `.env.example` committed, `.env.local` ignored. Fixed the
   default `.gitignore`, which had been ignoring the template too.
+- 2026-09-26: `01-project-setup` task 1.4 DONE — created and pushed `main`
+  from `dev` per the user's explicit override of the task's "no pushing to
+  main" rule. All six criteria verified.
