@@ -60,13 +60,28 @@ Tailwind CSS pre-configured.
 
 ### Acceptance Criteria
 
-- [ ] `job-agent/package.json` exists with `next`, `react`, `react-dom`,
+- [x] `job-agent/package.json` exists with `next`, `react`, `react-dom`,
       `typescript`, and `tailwindcss` as dependencies/devDependencies
-- [ ] `npm run dev` starts without error and serves a page
-- [ ] `next.config.ts` is present
-- [ ] The default `create-next-app` landing page markup is replaced with a
+- [x] `npm run dev` starts without error and serves a page
+- [x] `next.config.ts` is present
+- [x] The default `create-next-app` landing page markup is replaced with a
       placeholder home page (title + one line of text) — no demo boilerplate
-- [ ] Node version and package manager are recorded in `README.md`
+- [x] Node version and package manager are recorded in `README.md`
+
+### Verification evidence (2026-09-26)
+
+- `npm run dev` → `✓ Ready in 1077ms`; `GET http://localhost:3000` → `200`,
+  body contains `JobFinder`.
+- `npm run build` → `✓ Compiled successfully`, 2 routes prerendered.
+- `npm run typecheck` → clean. `npm run lint` → clean.
+- `tsconfig.json` has `"strict": true`.
+- Tailwind check: the built stylesheet
+  `.next/static/chunks/3c_aai6vq8w9n.css` (10,523 bytes) contains
+  `.max-w-3xl`, `.text-3xl`, `.font-semibold`, `.tracking-tight`,
+  `.text-zinc-600`, `.mx-auto`.
+- Installed: next 16.3.6, react 19.2.8, react-dom 19.2.8,
+  typescript ^5, tailwindcss ^4, eslint ^9.
+
 
 ### Out of Scope
 
