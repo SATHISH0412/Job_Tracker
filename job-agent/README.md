@@ -60,6 +60,49 @@ Every command in this table has been run successfully on this machine.
 
 Import alias `@/*` maps to this directory's root.
 
+## Project structure
+
+Verbatim from `../plans/ORIGINAL_PLAN.md` section 7. Every folder holds a
+real file or a `.gitkeep`, so the shape is visible in git.
+
+```text
+job-agent/
+├── app/
+│   ├── page.tsx                     Home — the search form
+│   ├── layout.tsx                   HTML shell, metadata, global CSS
+│   ├── jobs/
+│   │   └── page.tsx                 Search results page
+│   └── api/
+│       └── linkedin/
+│           └── search/
+│               └── route.ts        POST /api/linkedin/search
+├── components/
+│   ├── Header.tsx                   App header
+│   ├── SearchForm.tsx               The form and its submit handling
+│   ├── SearchFilters.tsx            Keyword/location/dropdown inputs
+│   ├── JobResults.tsx               Result list, or EmptyState
+│   ├── JobCard.tsx                  One job record
+│   └── EmptyState.tsx               "Nothing to show" message
+├── lib/
+│   ├── linkedin.ts                  Filters → LinkedIn search params
+│   ├── validation.ts                Shared validation rules
+│   └── search.ts                    parse → validate → params → URL
+├── types/
+│   └── job.ts                       Filter types, option lists, Job, SearchResult
+└── public/                          Static assets served at /
+```
+
+### `types/job.ts` is the source of truth
+
+Filter option lists and the `JobSearchFilters` shape are declared there once
+and derived from each other, so a new option is a one-line change picked up by
+the form, the validation, and the LinkedIn param builder simultaneously. Never
+redeclare those shapes or re-list those values in a component — import them.
+
+`Job` and `SearchResult` also live there. `Job`'s fields are all optional
+because V1 retrieves no records at all; `SearchResult.searchUrl` is the honest
+minimum result and `SearchResult.jobs` is empty in V1.
+
 ## Notes
 
 - `AGENTS.md` in this directory is generated and maintained by `next dev`.

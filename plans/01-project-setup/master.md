@@ -134,12 +134,35 @@ later plan has an obvious home for its files.
 
 ### Acceptance Criteria
 
-- [ ] The tree matches section 7 — no extra directories, none missing
-- [ ] Every folder has at least one tracked file
-- [ ] `types/job.ts` declares the shared `JobSearchFilters` type and the
+- [x] The tree matches section 7 — no extra directories, none missing
+- [x] Every folder has at least one tracked file
+- [x] `types/job.ts` declares the shared `JobSearchFilters` type and the
       filter option types (the single source of truth consumed by
       `02-search-ui` and `03-linkedin-search`)
-- [ ] The structure is documented in `README.md`
+- [x] The structure is documented in `README.md`
+
+### Verification evidence (2026-09-26)
+
+- File counts per folder: `app/` 6, `app/jobs/` 1, `app/api/` 1,
+  `app/api/linkedin/` 1, `app/api/linkedin/search/` 1, `components/` 6,
+  `lib/` 3, `types/` 1, `public/` 1 (`.gitkeep`). No folder is empty.
+- `types/job.ts` exports `EXPERIENCE_LEVEL_OPTIONS`,
+  `WORK_ARRANGEMENT_OPTIONS`, `JOB_TYPE_OPTIONS`, `DATE_POSTED_OPTIONS`
+  (all `as const`), the four filter types **derived** from those arrays via
+  `typeof X[number]`, plus `JobSearchFilters`, `Job`, and `SearchResult`.
+  Option values match `ORIGINAL_PLAN.md` §9 exactly.
+- `npm run build` → 4 routes: `/` and `/jobs` static,
+  `/api/linkedin/search` dynamic, `/_not-found`.
+- Dev server: `/` → 200, `/jobs` → 200, `GET /api/linkedin/search` → 405
+  (only `POST` is exported), `POST` → 500 (the shell throws by design rather
+  than returning a fake success).
+- `npm run lint` → 0 errors, 0 warnings. `npm run typecheck` → clean.
+- `README.md` contains the §7 tree with a one-line purpose per folder plus a
+  section on `types/job.ts` being the source of truth.
+- `lib/errors.ts`, referenced by `03-linkedin-search` task 3.3's file list,
+  is **not** in the §7 tree and was therefore deliberately **not** created.
+  Plan 03 must either add it with a Deviation Log entry or drop the
+  reference.
 
 ### Out of Scope
 

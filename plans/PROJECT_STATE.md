@@ -8,7 +8,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | IN_PROGRESS | 1/5 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | IN_PROGRESS | 2/5 |
 | 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
@@ -58,3 +58,7 @@ Plans `05`–`11` must not be started before that report.
   (Next 16.3.6 App Router, React 19, Tailwind v4, ESLint, no `src/`).
   Added `run.bat` and a run-focused README on user request. Branch
   `feature/01-project-setup/scaffold-app`.
+- 2026-09-26: `01-project-setup` task 1.2 DONE — created the full
+  `ORIGINAL_PLAN.md` §7 tree. `types/job.ts` holds the filter option arrays
+  with the filter types derived from them, plus `Job`, `SearchResult`, and
+  `JobSearchFilters`. Tree documented in `job-agent/README.md`.
