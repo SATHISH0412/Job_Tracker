@@ -30,17 +30,14 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 01 needs its PR opened.** All 5 tasks are DONE and pushed to
-  `feature/01-project-setup/scaffold-app`. `gh` 2.101.0 is installed but not
-  authenticated; run `gh auth login` once, after which the PR is opened with
-  `gh pr create --base dev --head feature/01-project-setup/scaffold-app`.
-  Until then create it here:
-  https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
-  Do not merge it until the branch has been reviewed.
-- **GitHub repo settings.** The default branch is probably `dev` (it was
-  pushed first); it should be `main`. Branch protection is not yet enabled on
-  `main` or `dev`. Until it is, the "protected branch" rule is a convention
-  this agent follows, not one GitHub enforces.
+- **Plan 01 PR.** All 5 tasks are DONE, all 8 Global Acceptance Criteria
+  verified at close-out, and the branch
+  `feature/01-project-setup/scaffold-app` is pushed. Open the PR into `dev`
+  with `gh pr create --base dev --head feature/01-project-setup/scaffold-app`.
+  Do not merge until the branch has been reviewed.
+- **Branch protection.** Not enabled on `main` or `dev`. The "protected
+  branch" rule is a convention this agent follows, not one GitHub currently
+  enforces.
 - Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists, and
   `lib/env.ts` is a fourth `lib/` file not shown in `ORIGINAL_PLAN.md` §7.
   Any plan text that names the config file is now wrong and must be adjusted.
@@ -76,8 +73,9 @@ Plans `05`–`11` must not be started before that report.
 - 2026-09-26: `01-project-setup` task 1.5 DONE — shared container added as a
   Tailwind v4 `@utility app-container`; both pages use it and the
   copy-pasted max-width/padding is gone.
-- 2026-09-26: **`01-project-setup` is DONE, 5/5.** Branch
-  `feature/01-project-setup/scaffold-app` pushed; the PR into `dev` still
-  has to be opened manually. V1 stands at 5 of 23 tasks — next is
-  `02-search-ui` task 2.1.
+- 2026-09-26: Plan close-out — re-verified all 8 Global Acceptance Criteria
+  (dev server 200 on `/` and `/jobs`, lint and typecheck clean,
+  `strict: true`, zero `any` in source, one `globals.css` import) and ticked
+  them in `master.md`. **`01-project-setup` is DONE, 5/5 tasks, 8/8 global
+  criteria.** V1 stands at 5 of 23 tasks — next is `02-search-ui` task 2.1.
 

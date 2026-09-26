@@ -3,7 +3,7 @@
 **Plan ID:** `01-project-setup`
 **Phase:** Phase 0 — Project Setup
 **Version target:** V1
-**Status:** NOT_STARTED
+**Status:** DONE
 **Depends on:** none
 **Source:** `ORIGINAL_PLAN.md` sections 4 (Technology Stack), 7 (Application Architecture), 15 (Security → Secrets), 23 (Deployment Plan → Development)
 
@@ -19,16 +19,33 @@ remote, and a root layout that owns global styling.
 
 ## Global Acceptance Criteria
 
-- [ ] `job-agent/` exists and `npm run dev` serves the app locally
-- [ ] `tsconfig.json` has `strict: true` and no `any` in committed source
-- [ ] Tailwind renders a test class correctly
-- [ ] The folder tree matches `ORIGINAL_PLAN.md` section 7 exactly
-- [ ] `.env.local` is gitignored; `.env.example` is committed with empty values
-- [ ] The git repo root is `Documents/project/job/` and `origin` points at
+- [x] `job-agent/` exists and `npm run dev` serves the app locally
+- [x] `tsconfig.json` has `strict: true` and no `any` in committed source
+- [x] Tailwind renders a test class correctly
+- [x] The folder tree matches `ORIGINAL_PLAN.md` section 7 exactly
+- [x] `.env.local` is gitignored; `.env.example` is committed with empty values
+- [x] The git repo root is `Documents/project/job/` and `origin` points at
       `https://github.com/SATHISH0412/Job_Tracker.git`
-- [ ] `npm run lint` and the typecheck command both pass
-- [ ] `app/layout.tsx` renders children in a consistent shell with global
+- [x] `npm run lint` and the typecheck command both pass
+- [x] `app/layout.tsx` renders children in a consistent shell with global
       CSS imported once
+
+### Verification evidence (2026-09-26, plan close-out)
+
+Re-verified all eight at once rather than relying on the per-task runs:
+
+- Dev server: `GET /` → 200, `GET /jobs` → 200.
+- `npm run lint` → 0 problems. `npm run typecheck` (`tsc --noEmit`) → 0 errors.
+- `tsconfig.json` contains `"strict": true` (1 match).
+- No `any` in committed source — searched `app/`, `components/`, `lib/`,
+  `types/` for `:\s*any\b`, `<any>`, `as any`, `any[]` → zero hits.
+- Tailwind: the compiled stylesheet contains `.app-container` and the six
+  test classes from task 1.1 (`.max-w-3xl`, `.text-3xl`, `.font-semibold`,
+  `.tracking-tight`, `.text-zinc-600`, `.mx-auto`).
+- Folder tree and env criteria verified per task — see the evidence blocks
+  under tasks 1.2, 1.3 and 1.4.
+- `globals.css` is imported exactly once across all source, in
+  `app/layout.tsx`.
 
 ## Out of Scope (for this plan)
 

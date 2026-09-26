@@ -121,11 +121,10 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-All five tasks are DONE. The plan PR into `dev` still has to be opened.
-`gh` 2.101.0 is installed but not authenticated — `gh auth login` is
-interactive, so run it once. Until then, create the PR manually at:
-
-https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
+All five tasks are DONE and all eight Global Acceptance Criteria were
+re-verified at close-out. Branch
+`feature/01-project-setup/scaffold-app` is pushed; the PR into `dev` is the
+next step. Do not merge it — the user reviews first.
 
 ## Notes
 
@@ -141,9 +140,9 @@ https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/sca
   generated type. On a clean clone, run `npm run build` first.
 - `job-agent/public/` is tracked via `public/.gitkeep`, added in task 1.2,
   so the folder survives a fresh clone.
-- `gh` CLI 2.101.0 is installed at `C:\Program Files\GitHub CLI\gh.exe`, but
-  is **not authenticated**. `gh auth login` is interactive, so the user runs
-  it once. After that, plan PRs are opened with
+- `gh` CLI 2.101.0 is installed at `C:\Program Files\GitHub CLI\gh.exe` and
+  is authenticated as `SATHISH0412` (scopes `repo`, `workflow`, `read:org`,
+  `gist`; keyring storage). Plan PRs are opened with
   `gh pr create --base dev --head <branch>` per `AGENTS.md` §5a.
 - Git identity is resolved and working: `SATHISH0412` /
   `sathishksv0412@gmail.com` (global config). The earlier placeholder came
