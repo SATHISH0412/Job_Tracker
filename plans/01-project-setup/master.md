@@ -209,11 +209,35 @@ shipped to the client.
 
 ### Acceptance Criteria
 
-- [ ] `.env.local` is listed in `.gitignore` and is not tracked by git
-- [ ] `.env.example` lists all five reserved names with empty values
-- [ ] `lib/env.ts` is the only module reading `process.env`
-- [ ] No secret value appears in any committed file
-- [ ] README documents the env setup steps
+- [x] `.env.local` is listed in `.gitignore` and is not tracked by git
+- [x] `.env.example` lists all five reserved names with empty values
+- [x] `lib/env.ts` is the only module reading `process.env`
+- [x] No secret value appears in any committed file
+- [x] README documents the env setup steps
+
+### Verification evidence (2026-09-26)
+
+- `git check-ignore -v job-agent/.env.local` → matched by
+  `job-agent/.gitignore:34:.env*`. `git add -n job-agent` lists
+  `.env.example` but **not** `.env.local`.
+- The default Next.js `.gitignore` shipped `.env*`, which also swallowed
+  `.env.example`. Added `!.env.example` (line 36) so the template is
+  committed while the real file stays ignored. Without this the criterion
+  "`.env.example` lists all five names" would have been unmeetable.
+- `.env.example` contains all five names with empty values and a `#` comment
+  each stating purpose and server-only status. A grep for
+  `^\s*[A-Z_]+=.+` returns nothing — no non-empty value anywhere.
+- `Get-ChildItem -Recurse *.ts,*.tsx app,components,lib,types | Select-String
+  'process\.env'` → only `lib/env.ts` (line 2 doc comment, line 52 the read).
+- `lib/env.ts` exports `MissingEnvironmentVariableError`,
+  `readEnvironmentVariable` (empty/whitespace treated as unset),
+  `requireEnvironmentVariable` (throws the named error), and
+  `isEnvironmentVariableName`.
+- `npm run build` → 4 routes, unchanged. `npm run lint` → 0 problems.
+  `npm run typecheck` → clean.
+- **Not verified by execution:** no V1 code path calls `lib/env.ts`, so it is
+  covered by types and build only. Its first real caller is
+  `04-private-access-and-handoff`.
 
 ### Out of Scope
 

@@ -60,6 +60,37 @@ Every command in this table has been run successfully on this machine.
 
 Import alias `@/*` maps to this directory's root.
 
+## Environment variables
+
+V1 needs **none** of them. The app runs with no `.env.local` at all. Copy the
+template only if you later move on to persistence or AI matching:
+
+```bash
+copy .env.example .env.local   # Windows
+cp .env.example .env.local     # macOS / Linux
+```
+
+Five names are reserved (`ORIGINAL_PLAN.md` section 15):
+
+| Name | Server-only | First used by |
+|---|---|---|
+| `DATABASE_URL` | yes | `05-job-persistence` |
+| `LINKEDIN_API_KEY` | yes | never in V1 |
+| `GEMINI_API_KEY` | yes | `08-ai-matching` |
+| `OPENROUTER_API_KEY` | yes | `08-ai-matching` |
+| `AUTH_SECRET` | yes | `04-private-access-and-handoff` |
+
+`.env.local` is gitignored. `.env.example` is committed and always has empty
+values.
+
+Read values **only** through `lib/env.ts` — it is the single module allowed to
+touch `process.env`. It exposes `readEnvironmentVariable` (returns
+`undefined`), `requireEnvironmentVariable` (throws
+`MissingEnvironmentVariableError`), and a `isEnvironmentVariableName` type
+guard. Nothing outside a `NEXT_PUBLIC_`-prefixed name reaches the browser, so
+these values cannot leak into a client bundle. Never import `lib/env.ts` from
+a Client Component.
+
 ## Project structure
 
 Verbatim from `../plans/ORIGINAL_PLAN.md` section 7. Every folder holds a
@@ -84,6 +115,7 @@ job-agent/
 │   ├── JobCard.tsx                  One job record
 │   └── EmptyState.tsx               "Nothing to show" message
 ├── lib/
+│   ├── env.ts                       The only reader of process.env
 │   ├── linkedin.ts                  Filters → LinkedIn search params
 │   ├── validation.ts                Shared validation rules
 │   └── search.ts                    parse → validate → params → URL

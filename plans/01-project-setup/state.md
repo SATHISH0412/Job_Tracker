@@ -18,7 +18,7 @@ The plan is DONE only when every task below is DONE.
 |---|---|---|---|
 | 1.1 | Scaffold the Next.js application | DONE | 2026-09-26 |
 | 1.2 | Establish the folder structure | DONE | 2026-09-26 |
-| 1.3 | Environment variable configuration | NOT_STARTED | — |
+| 1.3 | Environment variable configuration | DONE | 2026-09-26 |
 | 1.4 | Git repository setup | NOT_STARTED | — |
 | 1.5 | Base app layout and global styling | NOT_STARTED | — |
 
@@ -42,6 +42,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 | 2026-09-26 | 1.1 | Ran `npm run build` although the task's Out of Scope says "No production build verification beyond `npm run dev`" | Not optional: `LayoutProps<"/">` in the generated `app/layout.tsx` is a Next 16 type emitted into `.next/types` by a build, so `npm run typecheck` fails with TS2304 until a build has run once. Recorded so the extra step is not mistaken for scope creep. | pending user confirmation |
 | 2026-09-26 | 1.2 | `types/job.ts` also declares `Job` and `SearchResult`, which task 1.2's own criteria do not name | Task 1.2's AC only names `JobSearchFilters` and the filter option types, but `03-linkedin-search` task 3.4 requires `JobResults`/`JobCard` to be "typed against a shared `Job`/`SearchResult` type from `types/job.ts`", and 1.2 is the only task that touches that file before then. Declaring them here is the DRY-correct place and avoids `03` reopening a setup file. `jobs` is a `readonly Job[]` that is legitimately empty in V1 — V1 returns a URL, not records. | pending user confirmation |
 | 2026-09-26 | 1.2 | Placeholder shells render `null` and `lib/*.ts` placeholders `throw` | Task 1.2 asks for "an empty, correctly typed shell — no `any`, no stubbed fake data, no dead code" and forbids directories outside §7. Returning `null` is the only way to satisfy all three: a rendering component cannot be genuinely useful yet, and returning fabricated markup would be fake data. The `lib` placeholders throw rather than return a dummy value, matching the project's "fail loudly" rule. Each file names the plan/task that owns it. | pending user confirmation |
+| 2026-09-26 | 1.3 | Added `job-agent/lib/env.ts`, which is not listed in `ORIGINAL_PLAN.md` §7 | Task 1.3 requires centralising env access in one module and names `lib/env.ts` as the example. §7's `lib/` lists only `linkedin.ts`, `validation.ts`, and `search.ts`. Adding a fourth file does not violate task 1.2's "no extra directories" rule — it is a new file in an existing directory, and task 1.3 mandates it. §7 is now out of date on this point. | pending user confirmation |
 
 ## Progress Log
 
@@ -73,6 +74,15 @@ An unlogged deviation is a process failure — log it or don't do it.
   `null`; lib/route shells `throw`. Documented the tree in `README.md`.
   Verified: build shows 4 routes, `/` and `/jobs` return 200, lint and
   typecheck clean.
+- 2026-09-26: Task 1.3 DONE. Created `.env.local` (gitignored) and
+  `.env.example` (committed, all five names empty with purpose/server-only
+  comments), plus `lib/env.ts` as the sole reader of `process.env` — it
+  exposes `readEnvironmentVariable`, `requireEnvironmentVariable` (throws
+  `MissingEnvironmentVariableError`), and a type guard. Found and fixed a
+  real bug: the Next.js default `.gitignore` had `.env*`, which also ignored
+  `.env.example`; added `!.env.example`. Documented setup in `README.md`.
+  Verified `.env.local` ignored, `.env.example` staged, no `process.env`
+  outside `lib/env.ts`, no non-empty values anywhere.
 
 
 ## Blockers
@@ -81,10 +91,10 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 1.3: create `job-agent/.env.local` (gitignored) and
-`job-agent/.env.example` (committed, all values empty) covering
-`DATABASE_URL`, `LINKEDIN_API_KEY`, `GEMINI_API_KEY`, and the rest of
-`ORIGINAL_PLAN.md` §15, plus a single shared module for reading them.
+Start task 1.4: finish the git setup. The repo, remote, `dev`, and
+`.gitignore` already exist. What remains is **creating and pushing `main`**,
+which does not exist on the remote yet, and confirming the ignore rules.
+Read task 1.4's criteria in full before touching a protected branch.
 
 ## Notes
 
