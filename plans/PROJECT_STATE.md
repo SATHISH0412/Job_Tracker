@@ -8,7 +8,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | IN_PROGRESS | 4/5 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
 | 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
@@ -30,18 +30,24 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- `01-project-setup` task 1.4 DONE. `main` and `dev` both exist on the
-  remote at `8f4b37d`; `main` was pushed on the user's explicit instruction
-  and was never checked out locally. **Still needs doing by hand on GitHub:**
-  set the default branch to `main` (it is currently `dev`, which was pushed
-  first) and enable branch protection on `main` and `dev`.
-- All nine `01-project-setup` deviation-log rows are now user-approved.
-- Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists. Any later
-  plan that names that file is now wrong and must be adjusted.
-- `gh` CLI is not installed, so branch pushes work but PR creation is
-  manual until it is available.
-- `job-agent/README.md` exists in run-command form only. Task 4.4 owns the
-  complete documentation and must expand it.
+- **Plan 01 needs its PR opened by hand.** All 5 tasks are DONE and pushed to
+  `feature/01-project-setup/scaffold-app`, but `gh` is not installed, so the
+  PR into `dev` must be created here:
+  https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
+  Do not merge it until the branch has been reviewed.
+- **GitHub repo settings need doing by hand.** The default branch is probably
+  `dev` (it was pushed first); it should be `main`. Branch protection is not
+  yet enabled on `main` or `dev`. Until it is, the "protected branch" rule is
+  a convention this agent follows, not one GitHub enforces.
+- Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists, and
+  `lib/env.ts` is a fourth `lib/` file not shown in `ORIGINAL_PLAN.md` §7.
+  Any plan text that names the config file is now wrong and must be adjusted.
+- `03-linkedin-search` task 3.3 lists `job-agent/lib/errors.ts`, which is
+  **not** in the §7 tree and was deliberately not created in plan 01. Plan 03
+  must either add it with a Deviation Log entry or drop the reference.
+- `job-agent/README.md` covers setup, the folder tree, and env vars. Task 4.4
+  still owns the complete documentation and must expand it.
+- All nine `01-project-setup` deviation-log rows are user-approved.
 
 ## Progress log
 
@@ -65,3 +71,11 @@ Plans `05`–`11` must not be started before that report.
 - 2026-09-26: `01-project-setup` task 1.4 DONE — created and pushed `main`
   from `dev` per the user's explicit override of the task's "no pushing to
   main" rule. All six criteria verified.
+- 2026-09-26: `01-project-setup` task 1.5 DONE — shared container added as a
+  Tailwind v4 `@utility app-container`; both pages use it and the
+  copy-pasted max-width/padding is gone.
+- 2026-09-26: **`01-project-setup` is DONE, 5/5.** Branch
+  `feature/01-project-setup/scaffold-app` pushed; the PR into `dev` still
+  has to be opened manually. V1 stands at 5 of 23 tasks — next is
+  `02-search-ui` task 2.1.
+

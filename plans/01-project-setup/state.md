@@ -4,7 +4,7 @@
 
 ## Current Status
 
-IN_PROGRESS
+DONE
 
 <!--
 Allowed values: NOT_STARTED | IN_PROGRESS | BLOCKED | IN_REVIEW | DONE
@@ -20,7 +20,7 @@ The plan is DONE only when every task below is DONE.
 | 1.2 | Establish the folder structure | DONE | 2026-09-26 |
 | 1.3 | Environment variable configuration | DONE | 2026-09-26 |
 | 1.4 | Git repository setup | DONE | 2026-09-26 |
-| 1.5 | Base app layout and global styling | NOT_STARTED | — |
+| 1.5 | Base app layout and global styling | DONE | 2026-09-26 |
 
 ## Last Updated
 
@@ -94,6 +94,18 @@ An unlogged deviation is a process failure — log it or don't do it.
 - 2026-09-26: User approved the seven agent-decided deviation-log rows
   (previously "pending user confirmation"). Note: I asked about "six" — there
   were in fact seven.
+- 2026-09-26: Started task 1.5 — shared container. Adding it as a Tailwind v4
+  `@utility app-container` in `globals.css` rather than a `Container` React
+  component, so the shared class is defined once without adding a component
+  outside the §7 file list. Both pages switch to it, replacing the
+  copy-pasted `max-w-3xl px-6` in `app/page.tsx`.
+- 2026-09-26: Task 1.5 DONE. Added `@utility app-container` to `globals.css`
+  as the single shared max-width + padding definition, and switched both
+  pages onto it. `app/layout.tsx` already satisfied the rest of the task
+  (Server Component, `lang="en"`, metadata, sole `globals.css` import) and
+  was left unchanged. Verified the compiled `.app-container` rule, both pages
+  rendering 200 inside the same shell, one `globals.css` import, and no
+  `max-w-*`/`px-6` re-declared in any page.
 
 
 ## Blockers
@@ -102,9 +114,10 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 1.5: the base app layout and global styling — shared container
-component, metadata, and `globals.css` for Tailwind v4. This is the last
-task of plan 01, so completing it means opening the plan PR.
+All five tasks are DONE. The plan PR into `dev` still has to be opened —
+`gh` is not installed, so the user creates it manually at:
+
+https://github.com/SATHISH0412/Job_Tracker/pull/new/feature/01-project-setup/scaffold-app
 
 ## Notes
 

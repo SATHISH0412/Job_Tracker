@@ -1,5 +1,16 @@
 @import "tailwindcss";
 
+/*
+ * The one shared top-level container. Every page uses `app-container`
+ * instead of re-declaring max-width and horizontal padding.
+ */
+@utility app-container {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 48rem;
+  padding-inline: 1.5rem;
+}
+
 :root {
   --background: #ffffff;
   --foreground: #171717;

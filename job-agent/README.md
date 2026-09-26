@@ -135,6 +135,14 @@ redeclare those shapes or re-list those values in a component — import them.
 because V1 retrieves no records at all; `SearchResult.searchUrl` is the honest
 minimum result and `SearchResult.jobs` is empty in V1.
 
+### `app-container` is the only page container
+
+`app/globals.css` defines one `@utility app-container` (max-width 48rem,
+centred, 1.5rem inline padding). Use `className="app-container"` on a page's
+top-level element instead of writing `max-w-*` and `px-*` again. It is a
+Tailwind v4 `@utility` rather than a React `Container` component so the class
+stays composable with variants.
+
 ## Notes
 
 - `AGENTS.md` in this directory is generated and maintained by `next dev`.

@@ -348,11 +348,29 @@ Build the root layout and global styling shell that every page will use.
 
 ### Acceptance Criteria
 
-- [ ] `app/layout.tsx` renders `{children}` inside a consistent shell
-- [ ] Global CSS is imported once, only in the layout
-- [ ] Page title and basic meta tags are set
-- [ ] The container is defined once and reused, not copy-pasted per page
-- [ ] `app/jobs/page.tsx` renders inside the same shell
+- [x] `app/layout.tsx` renders `{children}` inside a consistent shell
+- [x] Global CSS is imported once, only in the layout
+- [x] Page title and basic meta tags are set
+- [x] The container is defined once and reused, not copy-pasted per page
+- [x] `app/jobs/page.tsx` renders inside the same shell
+
+### Verification evidence (2026-09-26)
+
+- The shared container is a Tailwind v4 `@utility app-container` in
+  `app/globals.css`, not a React component. The built stylesheet
+  `.next/static/chunks/2gohp_aqualu2.css` contains exactly
+  `.app-container{width:100%;max-width:48rem;margin-inline:auto;padding-inline:1.5rem}`.
+- Both pages use it: `GET /` → 200 and `GET /jobs` → 200, both bodies contain
+  `app-container`, both render `<html lang="en">` and `<title>JobFinder</title>`.
+- `Select-String 'globals.css'` across `app/`, `components/`, `lib/`,
+  `types/` → one hit, `app/layout.tsx:3`. Imported exactly once.
+- `Select-String 'max-w-|px-6'` across `app/**/*.tsx` → no hits, so the
+  container's max-width and padding are not re-declared per page. The
+  copy-pasted `max-w-3xl px-6` from task 1.1's placeholder is gone.
+- Layout stays a Server Component — no `"use client"` anywhere in `app/`.
+- `npm run build` → 4 routes. `npm run lint` → 0 problems.
+  `npm run typecheck` → clean.
+- No header, navigation, or theming was added (out of scope for 1.5).
 
 ### Out of Scope
 
