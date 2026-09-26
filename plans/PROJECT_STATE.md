@@ -8,7 +8,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | IN_REVIEW | 5/5 |
 | 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
@@ -30,14 +30,17 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 01 PR.** All 5 tasks are DONE, all 8 Global Acceptance Criteria
-  verified at close-out, and the branch
-  `feature/01-project-setup/scaffold-app` is pushed. Open the PR into `dev`
-  with `gh pr create --base dev --head feature/01-project-setup/scaffold-app`.
-  Do not merge until the branch has been reviewed.
+- **Plan 01 is awaiting review.** PR **#1** is open:
+  https://github.com/SATHISH0412/Job_Tracker/pull/1
+  `feature/01-project-setup/scaffold-app` → `dev`, 34 files, +7805/−58,
+  reported mergeable. Do not merge it — the user reviews and merges.
 - **Branch protection.** Not enabled on `main` or `dev`. The "protected
   branch" rule is a convention this agent follows, not one GitHub currently
   enforces.
+- **GitHub default branch is now `main`** (was `dev`, fixed with
+  `gh repo edit --default-branch main`). `main` and `dev` are both still at
+  `8f4b37d`, so the default branch has no app code on it yet — that resolves
+  when PR #1 merges into `dev` and `dev` is merged into `main`.
 - Tailwind is v4 / CSS-first, so no `tailwind.config.ts` exists, and
   `lib/env.ts` is a fourth `lib/` file not shown in `ORIGINAL_PLAN.md` §7.
   Any plan text that names the config file is now wrong and must be adjusted.

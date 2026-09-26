@@ -106,13 +106,17 @@ An unlogged deviation is a process failure — log it or don't do it.
   was left unchanged. Verified the compiled `.app-container` rule, both pages
   rendering 200 inside the same shell, one `globals.css` import, and no
   `max-w-*`/`px-6` re-declared in any page.
-- 2026-09-26: Plan 01 complete (5/5) and the branch was pushed. `gh` CLI
-  2.101.0 was then installed via winget, but it is unauthenticated and
-  `gh auth login` is interactive, so the user must run it once before PRs
-  can be opened automatically. While checking this, two doc edits were made
-  on the wrong branch (`dev`) and had to be redone here — no content was
-  lost, but it is a reminder to confirm `git branch --show-current` before
-  editing plan files.
+- 2026-09-26: Plan 01 PR **#1** opened with `gh pr create --base dev --head
+  feature/01-project-setup/scaffold-app` →
+  https://github.com/SATHISH0412/Job_Tracker/pull/1 (34 files, +7805/−58,
+  mergeable). Not merged and not deleted — the user reviews. Also fixed the
+  GitHub default branch from `dev` to `main` with
+  `gh repo edit --default-branch main`.
+- 2026-09-26: Process note — two doc edits were made while the working tree
+  was on `dev` instead of this branch, and had to be discarded from `dev` and
+  redone here. No committed content was lost, but always confirm
+  `git branch --show-current` before editing plan files. `dev` has still
+  received no commits of its own.
 
 
 ## Blockers
@@ -122,9 +126,14 @@ An unlogged deviation is a process failure — log it or don't do it.
 ## Next Action
 
 All five tasks are DONE and all eight Global Acceptance Criteria were
-re-verified at close-out. Branch
-`feature/01-project-setup/scaffold-app` is pushed; the PR into `dev` is the
-next step. Do not merge it — the user reviews first.
+re-verified at close-out.
+
+**PR #1 is open and awaiting the user's review:**
+https://github.com/SATHISH0412/Job_Tracker/pull/1
+
+`feature/01-project-setup/scaffold-app` → `dev`, 34 files, +7805/−58,
+reported mergeable. Do not merge it and do not delete the branch — the user
+reviews and merges. After the merge, `dev` is merged into `main`.
 
 ## Notes
 
