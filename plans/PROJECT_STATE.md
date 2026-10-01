@@ -9,7 +9,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
 | 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
-| 2 | `02-search-ui` | Search UI | V1 | 01 | IN_PROGRESS | 5/7 |
+| 2 | `02-search-ui` | Search UI | V1 | 01 | IN_PROGRESS | 6/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
 | 5 | `05-job-persistence` | Job Persistence | V1.1 / V2 | 04 | NOT_STARTED | 0/6 |
@@ -100,4 +100,8 @@ Plans `05`–`11` must not be started before that report.
   implemented in `lib/errors.ts` for all 7 documented cases; role="alert"
   error region integrated into `SearchForm.tsx`. All 5 criteria verified.
   V1 stands at 10 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.6 DONE — EmptyState component implemented
+  with verbatim section 13 guidance bullets, transparent LinkedIn handoff
+  notice without false job claims, and filter retry action. All 4 criteria
+  verified. V1 stands at 11 of 23 tasks.
 

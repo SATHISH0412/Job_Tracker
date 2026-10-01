@@ -21,7 +21,7 @@ The plan is DONE only when every task below is DONE.
 | 2.3 | Search form validation | DONE | 2026-10-01 |
 | 2.4 | Loading state | DONE | 2026-10-01 |
 | 2.5 | Error handling UI | DONE | 2026-10-01 |
-| 2.6 | Empty state | NOT_STARTED | — |
+| 2.6 | Empty state | DONE | 2026-10-01 |
 | 2.7 | Responsive layout pass | NOT_STARTED | — |
 
 ## Last Updated
@@ -61,6 +61,9 @@ An unlogged deviation is a process failure — log it or don't do it.
 - 2026-10-01: Task 2.5 DONE. Created `lib/errors.ts` defining stable error
   codes and user-friendly copy for all 7 documented cases; integrated
   separate `role="alert"` request error region clearing on success.
+- 2026-10-01: Task 2.6 DONE. Implemented EmptyState component with verbatim
+  section 13 guidance bullets, transparent LinkedIn handoff mode, and
+  preserved filters retry button.
 
 ## Blockers
 
@@ -68,7 +71,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.6 (Empty state).
+Start task 2.7 (Responsive layout pass).
 
 ## Notes
 

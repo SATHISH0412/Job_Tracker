@@ -321,10 +321,10 @@ Implement the empty-state UI from section 13.
 
 ### Acceptance Criteria
 
-- [ ] Empty state renders the exact guidance from section 13
-- [ ] Copy never falsely implies individual job records were fetched
-- [ ] The user can retry with filters preserved
-- [ ] The two empty conditions produce visibly different messages
+- [x] Empty state renders the exact guidance from section 13
+- [x] Copy never falsely implies individual job records were fetched
+- [x] The user can retry with filters preserved
+- [x] The two empty conditions produce visibly different messages
 
 ### Out of Scope
 
