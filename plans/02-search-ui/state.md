@@ -17,7 +17,7 @@ The plan is DONE only when every task below is DONE.
 | # | Task | Status | Completed |
 |---|---|---|---|
 | 2.1 | Header component | DONE | 2026-10-01 |
-| 2.2 | Search form component | NOT_STARTED | — |
+| 2.2 | Search form component | DONE | 2026-10-01 |
 | 2.3 | Search form validation | NOT_STARTED | — |
 | 2.4 | Loading state | NOT_STARTED | — |
 | 2.5 | Error handling UI | NOT_STARTED | — |
@@ -47,6 +47,10 @@ An unlogged deviation is a process failure — log it or don't do it.
   `components/Header.tsx` and mounted in `app/layout.tsx`. Verified Search
   active item, disabled future nav items with aria-disabled, responsive
   reflow without horizontal scroll, typecheck, lint, and build pass cleanly.
+- 2026-10-01: Task 2.2 DONE. Implemented SearchForm and SearchFilters
+  components with controlled JobSearchFilters state, exact options imported
+  from types/job.ts, keyboard accessibility, preventDefault on submit,
+  and mounted in app/page.tsx.
 
 ## Blockers
 
@@ -54,7 +58,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.2 (Search form component).
+Start task 2.3 (Search form validation).
 
 ## Notes
 

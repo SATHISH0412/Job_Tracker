@@ -118,13 +118,13 @@ Build the primary job search form described in section 9.
 
 ### Acceptance Criteria
 
-- [ ] All six fields render with the exact option values from section 9
-- [ ] Form state is controlled and typed via `types/job.ts`
-- [ ] Submitting calls the parent's search handler with current filter
+- [x] All six fields render with the exact option values from section 9
+- [x] Form state is controlled and typed via `types/job.ts`
+- [x] Submitting calls the parent's search handler with current filter
       values and does not do a native form POST/navigation
-- [ ] Every field has an associated label and is keyboard reachable
-- [ ] Option lists are imported from `types/job.ts`, not redeclared
-- [ ] `'use client'` appears in exactly the files that need it
+- [x] Every field has an associated label and is keyboard reachable
+- [x] Option lists are imported from `types/job.ts`, not redeclared
+- [x] `'use client'` appears in exactly the files that need it
 
 ### Out of Scope
 

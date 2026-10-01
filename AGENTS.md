@@ -3,9 +3,12 @@
 You are building **Personal LinkedIn Job Finder**, a private Next.js app.
 This file is your entry point. Read it fully before doing anything else.
 
-## Autonomous Execution and Permissions
+## Tool Permissions and Execution Rules
 
-- The assistant is fully authorized to execute terminal commands, run builds, typechecks, linting, git staging, per-task git commits, and branch pushes automatically per the workflow in this document without asking the user for confirmation.
+1. **Scope:** All tool actions and terminal commands must strictly operate within this project's directory only. Do not touch anything outside.
+2. **Auto-Approve:** Allow routine build, lint, typecheck, test, and local workspace file editing tools without prompting for interactive confirmation.
+3. **Explicit Approval:** ONLY ask for explicit user confirmation before running `git commit` and `git push`. Show the commit summary and message before requesting approval.
+4. **Auto-Persist Permissions:** Whenever I grant permission for a new project command, persist it into the local project settings file so you don't prompt for it again.
 
 ## 0. Reference material
 
@@ -201,11 +204,10 @@ rules apply any time git is used — including for the `plans/` documentation.
 - Create the branch from an up-to-date `dev`:
   `git fetch origin && git checkout dev && git pull && git checkout -b feature/<plan-id>-<slug>`
 
-### Per-task commits (automatic — no confirmation needed)
+### Per-task commits (explicit approval required before commit and push)
 
 Each task produces **one commit** on the plan's branch. When a task's row
-in the plan's `state.md` Task Status table is set to `DONE`, commit
-without asking the user first:
+in the plan's `state.md` Task Status table is set to `DONE`:
 
 1. `git checkout feature/<plan-id>-<slug>` (create it from `dev` first if
    this is the plan's first task).
@@ -213,9 +215,11 @@ without asking the user first:
    `state.md` updates. On the plan's **last** task, also include its
    `plans/INDEX.md` checkbox and its `plans/PROJECT_STATE.md` row, plus
    `AGENTS.md` if it changed.
-3. Commit with the task id in brackets, e.g.
+3. Formulate the commit message with the task id in brackets, e.g.
    `[01-project-setup 1.2] add section 7 folder skeleton`.
-4. `git push` the plan branch.
+4. **Ask the user for explicit confirmation before running `git commit` and `git push`**,
+   displaying the staged file summary and the commit message.
+5. Once confirmed, run `git commit` and `git push` to the plan branch.
 
 ### Plan completion (automatic — no confirmation needed)
 
