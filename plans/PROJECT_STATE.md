@@ -9,7 +9,7 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
 | 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
-| 2 | `02-search-ui` | Search UI | V1 | 01 | IN_PROGRESS | 3/7 |
+| 2 | `02-search-ui` | Search UI | V1 | 01 | IN_PROGRESS | 4/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
 | 5 | `05-job-persistence` | Job Persistence | V1.1 / V2 | 04 | NOT_STARTED | 0/6 |
@@ -92,4 +92,8 @@ Plans `05`–`11` must not be started before that report.
   `lib/validation.ts`, error constants defined, accessible inline errors
   integrated with `aria-invalid` / `aria-describedby` in `SearchForm.tsx`.
   All 6 criteria verified. V1 stands at 8 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.4 DONE — loading UI implemented with
+  verbatim section 12 copy, spinner with prefers-reduced-motion support,
+  disabled button state, double-click prevention, and finally-block teardown.
+  All 4 criteria verified. V1 stands at 9 of 23 tasks.
 

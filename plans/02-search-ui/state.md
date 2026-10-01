@@ -19,7 +19,7 @@ The plan is DONE only when every task below is DONE.
 | 2.1 | Header component | DONE | 2026-10-01 |
 | 2.2 | Search form component | DONE | 2026-10-01 |
 | 2.3 | Search form validation | DONE | 2026-10-01 |
-| 2.4 | Loading state | NOT_STARTED | — |
+| 2.4 | Loading state | DONE | 2026-10-01 |
 | 2.5 | Error handling UI | NOT_STARTED | — |
 | 2.6 | Empty state | NOT_STARTED | — |
 | 2.7 | Responsive layout pass | NOT_STARTED | — |
@@ -55,6 +55,9 @@ An unlogged deviation is a process failure — log it or don't do it.
   `lib/validation.ts`, defined error message constants, and integrated
   accessible inline error messaging (`aria-invalid`, `aria-describedby`,
   `role="alert"`) into `SearchForm.tsx` and `SearchFilters.tsx`.
+- 2026-10-01: Task 2.4 DONE. Implemented loading state UI with spinner
+  respecting prefers-reduced-motion, verbatim section 12 copy, disabled
+  button state, rapid double-click guard, and finally-block teardown.
 
 ## Blockers
 
@@ -62,7 +65,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.4 (Loading state).
+Start task 2.5 (Error handling UI).
 
 ## Notes
 

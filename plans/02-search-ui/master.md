@@ -226,10 +226,10 @@ flight.
 
 ### Acceptance Criteria
 
-- [ ] Button is disabled and shows a loading indicator while pending
-- [ ] Loading state clears on success, on error, and on thrown exceptions
-- [ ] The section 12 copy appears verbatim
-- [ ] Rapid double-click cannot produce two requests
+- [x] Button is disabled and shows a loading indicator while pending
+- [x] Loading state clears on success, on error, and on thrown exceptions
+- [x] The section 12 copy appears verbatim
+- [x] Rapid double-click cannot produce two requests
 
 ### Out of Scope
 
