@@ -12,20 +12,34 @@ Update this value every time work starts, stalls, or finishes on this plan.
 The plan is DONE only when every task below is DONE.
 -->
 
+## Multi-Agent Parallel Execution Tracks
+
+Tasks are divided into independent tracks with zero file overlap to enable concurrent execution via multiple subagents:
+
+- **Track A (Backend & Logic Agent):**
+  - Owns: `lib/linkedin.ts`, `lib/search.ts`, `app/api/linkedin/search/route.ts`
+  - Runs: Task 3.1 → Task 3.2 → Task 3.3
+- **Track B (Frontend & Results UI Agent):**
+  - Owns: `components/JobResults.tsx`, `components/JobCard.tsx`
+  - Runs: Task 3.4 → Task 3.5 (concurrently with Track A)
+- **Track C (Integration & Testing Agent):**
+  - Owns: `app/page.tsx`, verification & mapping test suite
+  - Runs: Task 3.6 (merges Track A & Track B)
+
 ## Task Status
 
-| # | Task | Status | Completed |
-|---|---|---|---|
-| 3.1 | LinkedIn search parameter builder | NOT_STARTED | — |
-| 3.2 | Search URL encoding and safety | NOT_STARTED | — |
-| 3.3 | Search API route | NOT_STARTED | — |
-| 3.4 | Job results display | NOT_STARTED | — |
-| 3.5 | Open on LinkedIn action | NOT_STARTED | — |
-| 3.6 | Filter combination testing | NOT_STARTED | — |
+| # | Track | Task | Files Owned | Status | Completed |
+|---|---|---|---|---|---|
+| 3.1 | Track A (Backend) | LinkedIn search parameter builder | `lib/linkedin.ts` | NOT_STARTED | — |
+| 3.2 | Track A (Backend) | Search URL encoding and safety | `lib/linkedin.ts` | NOT_STARTED | — |
+| 3.3 | Track A (Backend) | Search API route | `app/api/linkedin/search/route.ts`, `lib/search.ts` | NOT_STARTED | — |
+| 3.4 | Track B (Frontend) | Job results display | `components/JobResults.tsx`, `components/JobCard.tsx` | NOT_STARTED | — |
+| 3.5 | Track B (Frontend) | Open on LinkedIn action | `components/JobCard.tsx`, `components/JobResults.tsx` | NOT_STARTED | — |
+| 3.6 | Track C (Integration) | Filter combination testing | `app/page.tsx`, verification suite | NOT_STARTED | — |
 
 ## Last Updated
 
-(not started yet)
+2026-10-01
 
 ## Deviation Log
 
@@ -57,7 +71,10 @@ each mapping so a future change is detectable.
 
 ## Progress Log
 
-- (empty — append a dated one-line entry here on every touch of this plan)
+- 2026-10-01: Plan structured for multi-agent parallel execution. Identified
+  zero-file-overlap independent tracks: Track A (Backend Logic & API: tasks 3.1,
+  3.2, 3.3) and Track B (Frontend UI & Cards: tasks 3.4, 3.5), converging at
+  Track C (Task 3.6 Integration & Testing). Updated master.md and state.md.
 
 ## Blockers
 
