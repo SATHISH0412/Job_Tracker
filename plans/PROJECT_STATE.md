@@ -30,10 +30,11 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 01 is awaiting review.** PR **#1** is open:
-  https://github.com/SATHISH0412/Job_Tracker/pull/1
-  `feature/01-project-setup/scaffold-app` → `dev`, 34 files, +7805/−58,
-  reported mergeable. Do not merge it — the user reviews and merges.
+- **Plan 02 is awaiting review.** PR **#2** is open:
+  https://github.com/SATHISH0412/Job_Tracker/pull/2
+  `feature/02-search-ui/search-interface` → `dev`, delivering all 7 tasks
+  for the Search UI. Do not merge it — the user reviews and merges.
+- **Plan 01 PR #1** was merged into `dev` (commit `b1c2422`).
 - **Branch protection.** Not enabled on `main` or `dev`. The "protected
   branch" rule is a convention this agent follows, not one GitHub currently
   enforces.
