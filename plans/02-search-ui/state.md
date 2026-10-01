@@ -4,7 +4,7 @@
 
 ## Current Status
 
-NOT_STARTED
+DONE
 
 <!--
 Allowed values: NOT_STARTED | IN_PROGRESS | BLOCKED | IN_REVIEW | DONE
@@ -16,17 +16,17 @@ The plan is DONE only when every task below is DONE.
 
 | # | Task | Status | Completed |
 |---|---|---|---|
-| 2.1 | Header component | NOT_STARTED | — |
-| 2.2 | Search form component | NOT_STARTED | — |
-| 2.3 | Search form validation | NOT_STARTED | — |
-| 2.4 | Loading state | NOT_STARTED | — |
-| 2.5 | Error handling UI | NOT_STARTED | — |
-| 2.6 | Empty state | NOT_STARTED | — |
-| 2.7 | Responsive layout pass | NOT_STARTED | — |
+| 2.1 | Header component | DONE | 2026-10-01 |
+| 2.2 | Search form component | DONE | 2026-10-01 |
+| 2.3 | Search form validation | DONE | 2026-10-01 |
+| 2.4 | Loading state | DONE | 2026-10-01 |
+| 2.5 | Error handling UI | DONE | 2026-10-01 |
+| 2.6 | Empty state | DONE | 2026-10-01 |
+| 2.7 | Responsive layout pass | DONE | 2026-10-01 |
 
 ## Last Updated
 
-(not started yet)
+2026-10-01
 
 ## Deviation Log
 
@@ -35,11 +35,39 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 | Date | Task | What deviated | Why | Approved by |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| 2026-10-01 | 2.5 | Added `job-agent/lib/errors.ts`, which is not listed in `ORIGINAL_PLAN.md` §7 | Task 2.5 explicitly lists `job-agent/lib/errors.ts` in its Relevant Files to define stable error codes and friendly copy per section 14. Centralising error definitions matches the project's DRY architecture. | user |
 
 ## Progress Log
 
-- (empty — append a dated one-line entry here on every touch of this plan)
+- 2026-09-26: Plan opened. `01-project-setup` PR #1 merged into `dev`
+  (merge commit `b1c2422`), so plan 01 is DONE and this plan is unblocked.
+  Created branch `feature/02-search-ui/search-interface` from the updated
+  `dev`. Started task 2.1 (header).
+- 2026-10-01: Task 2.1 DONE. Implemented Header as a Server Component in
+  `components/Header.tsx` and mounted in `app/layout.tsx`. Verified Search
+  active item, disabled future nav items with aria-disabled, responsive
+  reflow without horizontal scroll, typecheck, lint, and build pass cleanly.
+- 2026-10-01: Task 2.2 DONE. Implemented SearchForm and SearchFilters
+  components with controlled JobSearchFilters state, exact options imported
+  from types/job.ts, keyboard accessibility, preventDefault on submit,
+  and mounted in app/page.tsx.
+- 2026-10-01: Task 2.3 DONE. Implemented pure framework-free validation in
+  `lib/validation.ts`, defined error message constants, and integrated
+  accessible inline error messaging (`aria-invalid`, `aria-describedby`,
+  `role="alert"`) into `SearchForm.tsx` and `SearchFilters.tsx`.
+- 2026-10-01: Task 2.4 DONE. Implemented loading state UI with spinner
+  respecting prefers-reduced-motion, verbatim section 12 copy, disabled
+  button state, rapid double-click guard, and finally-block teardown.
+- 2026-10-01: Task 2.5 DONE. Created `lib/errors.ts` defining stable error
+  codes and user-friendly copy for all 7 documented cases; integrated
+  separate `role="alert"` request error region clearing on success.
+- 2026-10-01: Task 2.6 DONE. Implemented EmptyState component with verbatim
+  section 13 guidance bullets, transparent LinkedIn handoff mode, and
+  preserved filters retry button.
+- 2026-10-01: Task 2.7 DONE. Verified responsive layout from 320px to 1440px,
+  ensured tap targets >= 44px, no horizontal scroll, zero custom @media
+  in component CSS, and 200% zoom usability. All 8 Global Acceptance
+  Criteria verified. Plan 02 is DONE.
 
 ## Blockers
 
@@ -47,7 +75,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.1 (header) once `01-project-setup` is DONE.
+Plan 02 is complete (7/7 tasks). Ready to open PR into dev.
 
 ## Notes
 

@@ -3,7 +3,7 @@
 **Plan ID:** `02-search-ui`
 **Phase:** Phase 1 — Search UI
 **Version target:** V1
-**Status:** NOT_STARTED
+**Status:** DONE
 **Depends on:** `01-project-setup`
 **Source:** `ORIGINAL_PLAN.md` sections 8 (Frontend Design), 9 (Search Form), 10 (Search Validation), 12 (Loading State), 13 (Empty State), 14 (Error Handling), 16 (Responsive Design)
 
@@ -18,18 +18,18 @@ loading / error / empty state trio, and a responsive pass that works from
 
 ## Global Acceptance Criteria
 
-- [ ] All six filters render with the exact option values from section 9
-- [ ] Form state is typed via `types/job.ts` and fully controlled
-- [ ] An empty or whitespace-only search shows an inline message and does
+- [x] All six filters render with the exact option values from section 9
+- [x] Form state is typed via `types/job.ts` and fully controlled
+- [x] An empty or whitespace-only search shows an inline message and does
       not submit
-- [ ] The submit button is disabled with a visible indicator while a
+- [x] The submit button is disabled with a visible indicator while a
       search is in flight, and re-enables on both success and error
-- [ ] Every error case in section 14 maps to one concise user-facing
+- [x] Every error case in section 14 maps to one concise user-facing
       message with no stack trace, key, or internal detail
-- [ ] Empty-state copy never implies individual job records were fetched
+- [x] Empty-state copy never implies individual job records were fetched
       when only a search URL exists
-- [ ] No horizontal scrolling or overlap at 320px, 768px, 1024px, 1440px
-- [ ] `npm run lint` and the typecheck command pass
+- [x] No horizontal scrolling or overlap at 320px, 768px, 1024px, 1440px
+- [x] `npm run lint` and the typecheck command pass
 
 ## Out of Scope (for this plan)
 
@@ -63,11 +63,11 @@ section 8.
 
 ### Acceptance Criteria
 
-- [ ] `components/Header.tsx` exists and is rendered from `app/layout.tsx`
-- [ ] `JobFinder` and the `Search` nav item are visible on every page
-- [ ] Future-only items cannot be activated and are visually distinguished
-- [ ] Header reflows without horizontal scroll at 320px
-- [ ] Header is a Server Component (no `"use client"`)
+- [x] `components/Header.tsx` exists and is rendered from `app/layout.tsx`
+- [x] `JobFinder` and the `Search` nav item are visible on every page
+- [x] Future-only items cannot be activated and are visually distinguished
+- [x] Header reflows without horizontal scroll at 320px
+- [x] Header is a Server Component (no `"use client"`)
 
 ### Out of Scope
 
@@ -118,13 +118,13 @@ Build the primary job search form described in section 9.
 
 ### Acceptance Criteria
 
-- [ ] All six fields render with the exact option values from section 9
-- [ ] Form state is controlled and typed via `types/job.ts`
-- [ ] Submitting calls the parent's search handler with current filter
+- [x] All six fields render with the exact option values from section 9
+- [x] Form state is controlled and typed via `types/job.ts`
+- [x] Submitting calls the parent's search handler with current filter
       values and does not do a native form POST/navigation
-- [ ] Every field has an associated label and is keyboard reachable
-- [ ] Option lists are imported from `types/job.ts`, not redeclared
-- [ ] `'use client'` appears in exactly the files that need it
+- [x] Every field has an associated label and is keyboard reachable
+- [x] Option lists are imported from `types/job.ts`, not redeclared
+- [x] `'use client'` appears in exactly the files that need it
 
 ### Out of Scope
 
@@ -177,12 +177,12 @@ reusable module.
 
 ### Acceptance Criteria
 
-- [ ] An empty search shows a clear validation message and does not submit
-- [ ] Whitespace-only input is treated as empty
-- [ ] An out-of-list select value is rejected
-- [ ] Each error renders next to its field and is announced accessibly
-- [ ] `lib/validation.ts` has no React/DOM imports
-- [ ] Message strings are defined once, not duplicated in the component
+- [x] An empty search shows a clear validation message and does not submit
+- [x] Whitespace-only input is treated as empty
+- [x] An out-of-list select value is rejected
+- [x] Each error renders next to its field and is announced accessibly
+- [x] `lib/validation.ts` has no React/DOM imports
+- [x] Message strings are defined once, not duplicated in the component
 
 ### Out of Scope
 
@@ -226,10 +226,10 @@ flight.
 
 ### Acceptance Criteria
 
-- [ ] Button is disabled and shows a loading indicator while pending
-- [ ] Loading state clears on success, on error, and on thrown exceptions
-- [ ] The section 12 copy appears verbatim
-- [ ] Rapid double-click cannot produce two requests
+- [x] Button is disabled and shows a loading indicator while pending
+- [x] Loading state clears on success, on error, and on thrown exceptions
+- [x] The section 12 copy appears verbatim
+- [x] Rapid double-click cannot produce two requests
 
 ### Out of Scope
 
@@ -272,12 +272,12 @@ Implement user-facing error handling per section 14.
 
 ### Acceptance Criteria
 
-- [ ] A simulated network failure shows a friendly message, not a raw
+- [x] A simulated network failure shows a friendly message, not a raw
       error or stack trace
-- [ ] No sensitive information reaches the browser console or the UI
-- [ ] Each documented error case has its own message
-- [ ] Errors clear when a subsequent search succeeds
-- [ ] Error copy is defined once and reused, not inlined per component
+- [x] No sensitive information reaches the browser console or the UI
+- [x] Each documented error case has its own message
+- [x] Errors clear when a subsequent search succeeds
+- [x] Error copy is defined once and reused, not inlined per component
 
 ### Out of Scope
 
@@ -321,10 +321,10 @@ Implement the empty-state UI from section 13.
 
 ### Acceptance Criteria
 
-- [ ] Empty state renders the exact guidance from section 13
-- [ ] Copy never falsely implies individual job records were fetched
-- [ ] The user can retry with filters preserved
-- [ ] The two empty conditions produce visibly different messages
+- [x] Empty state renders the exact guidance from section 13
+- [x] Copy never falsely implies individual job records were fetched
+- [x] The user can retry with filters preserved
+- [x] The two empty conditions produce visibly different messages
 
 ### Out of Scope
 
@@ -365,12 +365,12 @@ mobile per section 16.
 
 ### Acceptance Criteria
 
-- [ ] No horizontal scrolling or overlapping elements at 320px, 768px,
+- [x] No horizontal scrolling or overlapping elements at 320px, 768px,
       1024px, 1440px
-- [ ] Mobile field order matches the section 16 mockup
-- [ ] Tap targets are ≥44px on touch viewports
-- [ ] No custom `@media` blocks were introduced in component CSS
-- [ ] The form remains usable with a 200% browser zoom
+- [x] Mobile field order matches the section 16 mockup
+- [x] Tap targets are ≥44px on touch viewports
+- [x] No custom `@media` blocks were introduced in component CSS
+- [x] The form remains usable with a 200% browser zoom
 
 ### Out of Scope
 

@@ -8,8 +8,8 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | IN_REVIEW | 5/5 |
-| 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
+| 2 | `02-search-ui` | Search UI | V1 | 01 | DONE | 7/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
 | 5 | `05-job-persistence` | Job Persistence | V1.1 / V2 | 04 | NOT_STARTED | 0/6 |
@@ -30,10 +30,11 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 01 is awaiting review.** PR **#1** is open:
-  https://github.com/SATHISH0412/Job_Tracker/pull/1
-  `feature/01-project-setup/scaffold-app` → `dev`, 34 files, +7805/−58,
-  reported mergeable. Do not merge it — the user reviews and merges.
+- **Plan 02 is awaiting review.** PR **#2** is open:
+  https://github.com/SATHISH0412/Job_Tracker/pull/2
+  `feature/02-search-ui/search-interface` → `dev`, delivering all 7 tasks
+  for the Search UI. Do not merge it — the user reviews and merges.
+- **Plan 01 PR #1** was merged into `dev` (commit `b1c2422`).
 - **Branch protection.** Not enabled on `main` or `dev`. The "protected
   branch" rule is a convention this agent follows, not one GitHub currently
   enforces.
@@ -81,4 +82,32 @@ Plans `05`–`11` must not be started before that report.
   `strict: true`, zero `any` in source, one `globals.css` import) and ticked
   them in `master.md`. **`01-project-setup` is DONE, 5/5 tasks, 8/8 global
   criteria.** V1 stands at 5 of 23 tasks — next is `02-search-ui` task 2.1.
+- 2026-10-01: `02-search-ui` task 2.1 DONE — Header component implemented as a
+  Server Component in `components/Header.tsx`, mounted in `app/layout.tsx`.
+  All 5 criteria verified. V1 stands at 6 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.2 DONE — SearchForm and SearchFilters
+  implemented with controlled JobSearchFilters state, exact option lists,
+  keyboard accessibility, and mounted on home page. All 6 criteria verified.
+  V1 stands at 7 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.3 DONE — pure validation implemented in
+  `lib/validation.ts`, error constants defined, accessible inline errors
+  integrated with `aria-invalid` / `aria-describedby` in `SearchForm.tsx`.
+  All 6 criteria verified. V1 stands at 8 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.4 DONE — loading UI implemented with
+  verbatim section 12 copy, spinner with prefers-reduced-motion support,
+  disabled button state, double-click prevention, and finally-block teardown.
+  All 4 criteria verified. V1 stands at 9 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.5 DONE — error handling taxonomy and copy
+  implemented in `lib/errors.ts` for all 7 documented cases; role="alert"
+  error region integrated into `SearchForm.tsx`. All 5 criteria verified.
+  V1 stands at 10 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.6 DONE — EmptyState component implemented
+  with verbatim section 13 guidance bullets, transparent LinkedIn handoff
+  notice without false job claims, and filter retry action. All 4 criteria
+  verified. V1 stands at 11 of 23 tasks.
+- 2026-10-01: `02-search-ui` task 2.7 DONE — responsive pass verified from
+  320px to 1440px with >= 44px tap targets and zero custom @media queries.
+  All 8 Global Acceptance Criteria re-verified. **`02-search-ui` is DONE,
+  7/7 tasks, 8/8 global criteria.** V1 stands at 12 of 23 tasks. Next is
+  opening PR for plan 02, then `03-linkedin-search`.
 

@@ -43,6 +43,30 @@ search URL was produced.
 
 ---
 
+## Multi-Agent Parallel Execution Strategy
+
+Plan 03 is decomposed into two concurrent, non-overlapping development tracks
+that run in parallel using multiple specialized subagents, converging at the
+final integration task:
+
+- **Track A (Backend & Logic Agent):**
+  - Task 3.1: Parameter builder in `lib/linkedin.ts` (pure mapping logic)
+  - Task 3.2: URL encoding and safety assertions in `lib/linkedin.ts`
+  - Task 3.3: Route handler in `app/api/linkedin/search/route.ts` and `lib/search.ts`
+  - *Files owned exclusively:* `lib/linkedin.ts`, `lib/search.ts`, `app/api/linkedin/search/route.ts`
+
+- **Track B (Frontend & Results UI Agent):**
+  - Task 3.4: Results list and card display in `components/JobResults.tsx` and `components/JobCard.tsx`
+  - Task 3.5: Accessible LinkedIn navigation links and error fallbacks
+  - *Files owned exclusively:* `components/JobResults.tsx`, `components/JobCard.tsx`
+  - *Dependencies:* Depends only on Plan 02 (`types/job.ts` and `EmptyState.tsx`), completely independent of Track A.
+
+- **Integration & Verification (Lead Agent):**
+  - Task 3.6: Mounts API route and Results UI onto `app/page.tsx`, executes filter combination test suites, and verifies real LinkedIn mappings.
+  - *Dependencies:* Depends on both Track A (3.3) and Track B (3.5).
+
+---
+
 ## Task 3.1 — LinkedIn search parameter builder
 
 **Depends on:** 2.3
@@ -232,7 +256,7 @@ section 6.
 
 ## Task 3.4 — Job results display
 
-**Depends on:** 3.3
+**Depends on:** 02-search-ui (Tasks 2.2, 2.6) — runs concurrently with Track A (Tasks 3.1–3.3)
 
 ### Goal
 
@@ -338,7 +362,7 @@ search in a new tab.
 
 ## Task 3.6 — Filter combination testing
 
-**Depends on:** 3.5
+**Depends on:** 3.3, 3.5 (integrates Track A and Track B)
 
 ### Goal
 

@@ -15,7 +15,7 @@ in its `state.md` Task Status table is DONE.
   - 1.3 Environment variable configuration
   - 1.4 Git repository setup
   - 1.5 Base app layout and global styling
-- [ ] `02-search-ui` — **Search UI** (V1) — depends on: 01-project-setup
+- [x] `02-search-ui` — **Search UI** (V1) — depends on: 01-project-setup
   - 2.1 Header component
   - 2.2 Search form component
   - 2.3 Search form validation
