@@ -272,12 +272,12 @@ Implement user-facing error handling per section 14.
 
 ### Acceptance Criteria
 
-- [ ] A simulated network failure shows a friendly message, not a raw
+- [x] A simulated network failure shows a friendly message, not a raw
       error or stack trace
-- [ ] No sensitive information reaches the browser console or the UI
-- [ ] Each documented error case has its own message
-- [ ] Errors clear when a subsequent search succeeds
-- [ ] Error copy is defined once and reused, not inlined per component
+- [x] No sensitive information reaches the browser console or the UI
+- [x] Each documented error case has its own message
+- [x] Errors clear when a subsequent search succeeds
+- [x] Error copy is defined once and reused, not inlined per component
 
 ### Out of Scope
 

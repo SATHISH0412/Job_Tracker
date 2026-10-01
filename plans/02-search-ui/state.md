@@ -20,7 +20,7 @@ The plan is DONE only when every task below is DONE.
 | 2.2 | Search form component | DONE | 2026-10-01 |
 | 2.3 | Search form validation | DONE | 2026-10-01 |
 | 2.4 | Loading state | DONE | 2026-10-01 |
-| 2.5 | Error handling UI | NOT_STARTED | — |
+| 2.5 | Error handling UI | DONE | 2026-10-01 |
 | 2.6 | Empty state | NOT_STARTED | — |
 | 2.7 | Responsive layout pass | NOT_STARTED | — |
 
@@ -35,7 +35,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 | Date | Task | What deviated | Why | Approved by |
 |---|---|---|---|---|
-| — | — | — | — | — |
+| 2026-10-01 | 2.5 | Added `job-agent/lib/errors.ts`, which is not listed in `ORIGINAL_PLAN.md` §7 | Task 2.5 explicitly lists `job-agent/lib/errors.ts` in its Relevant Files to define stable error codes and friendly copy per section 14. Centralising error definitions matches the project's DRY architecture. | user |
 
 ## Progress Log
 
@@ -58,6 +58,9 @@ An unlogged deviation is a process failure — log it or don't do it.
 - 2026-10-01: Task 2.4 DONE. Implemented loading state UI with spinner
   respecting prefers-reduced-motion, verbatim section 12 copy, disabled
   button state, rapid double-click guard, and finally-block teardown.
+- 2026-10-01: Task 2.5 DONE. Created `lib/errors.ts` defining stable error
+  codes and user-friendly copy for all 7 documented cases; integrated
+  separate `role="alert"` request error region clearing on success.
 
 ## Blockers
 
@@ -65,7 +68,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.5 (Error handling UI).
+Start task 2.6 (Empty state).
 
 ## Notes
 

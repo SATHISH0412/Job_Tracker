@@ -7,6 +7,12 @@ import {
   type ValidationError,
   type ValidationField,
 } from "@/lib/validation";
+import {
+  getErrorMessage,
+  isSearchErrorCode,
+  SEARCH_ERROR_CODES,
+  type SearchErrorCode,
+} from "@/lib/errors";
 import type {
   JobSearchFilters,
   ExperienceLevel,
@@ -28,6 +34,8 @@ export interface SearchFormProps {
   readonly initialFilters?: Partial<JobSearchFilters>;
   readonly onSearch?: (filters: JobSearchFilters) => void | Promise<void>;
   readonly isLoading?: boolean;
+  readonly error?: SearchErrorCode | string | null;
+  readonly onClearError?: () => void;
 }
 
 /**
@@ -35,13 +43,15 @@ export interface SearchFormProps {
  *
  * Implements the six search fields described in ORIGINAL_PLAN.md section 9:
  * Keywords, Location, Experience Level, Remote, Job Type, Date Posted.
- * Form state is fully controlled, validated via lib/validation.ts, and displays
- * loading state with section 12 copy during flight.
+ * Form state is fully controlled, validated via lib/validation.ts, displays
+ * loading state with section 12 copy during flight, and handles errors per section 14.
  */
 export default function SearchForm({
   initialFilters,
   onSearch,
   isLoading = false,
+  error: externalError,
+  onClearError,
 }: SearchFormProps) {
   const [filters, setFilters] = useState<JobSearchFilters>({
     ...DEFAULT_FILTERS,
@@ -50,6 +60,7 @@ export default function SearchForm({
 
   const [errors, setErrors] = useState<readonly ValidationError[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [internalError, setInternalError] = useState<SearchErrorCode | null>(null);
 
   const isMountedRef = useRef(true);
   useEffect(() => {
@@ -60,6 +71,8 @@ export default function SearchForm({
   }, []);
 
   const loading = Boolean(isLoading || isSubmitting);
+  const activeErrorCode = externalError ?? internalError;
+  const activeErrorDetails = activeErrorCode ? getErrorMessage(activeErrorCode) : null;
 
   const getFieldError = (field: ValidationField): string | undefined => {
     return errors.find((err) => err.field === field)?.message;
@@ -79,12 +92,36 @@ export default function SearchForm({
       return;
     }
     setErrors([]);
+    setInternalError(null);
+    onClearError?.();
 
     if (!onSearch) return;
 
     try {
       setIsSubmitting(true);
       await onSearch(result.sanitizedFilters ?? filters);
+      if (isMountedRef.current) {
+        setInternalError(null);
+      }
+    } catch (err: unknown) {
+      if (isMountedRef.current) {
+        // Safe mapping - never log or render stack traces, keys, or credentials
+        let code: SearchErrorCode = SEARCH_ERROR_CODES.SERVER_ERROR;
+        if (
+          err instanceof TypeError &&
+          err.message.toLowerCase().includes("fetch")
+        ) {
+          code = SEARCH_ERROR_CODES.NETWORK_FAILURE;
+        } else if (
+          typeof err === "object" &&
+          err !== null &&
+          "code" in err &&
+          isSearchErrorCode((err as { code: unknown }).code)
+        ) {
+          code = (err as { code: SearchErrorCode }).code;
+        }
+        setInternalError(code);
+      }
     } finally {
       if (isMountedRef.current) {
         setIsSubmitting(false);
@@ -128,6 +165,21 @@ export default function SearchForm({
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
+      {/* Section 14 Request Error Alert Region */}
+      {activeErrorDetails && (
+        <div
+          role="alert"
+          className="rounded-md border border-red-500/20 bg-red-500/5 p-4 text-sm text-foreground dark:bg-red-950/20"
+        >
+          <p className="font-semibold text-red-600 dark:text-red-400">
+            {activeErrorDetails.title}
+          </p>
+          <p className="mt-1 text-xs text-foreground/80">
+            {activeErrorDetails.message}
+          </p>
+        </div>
+      )}
+
       {/* 1. Keywords */}
       <div className="flex flex-col gap-1.5">
         <label
