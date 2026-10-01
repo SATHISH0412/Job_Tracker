@@ -23,7 +23,7 @@ in its `state.md` Task Status table is DONE.
   - 2.5 Error handling UI
   - 2.6 Empty state
   - 2.7 Responsive layout pass
-- [ ] `03-linkedin-search` — **LinkedIn Search Integration** (V1) — depends on: 02-search-ui
+- [x] `03-linkedin-search` — **LinkedIn Search Integration** (V1) — depends on: 02-search-ui
   - 3.1 LinkedIn search parameter builder
   - 3.2 Search URL encoding and safety
   - 3.3 Search API route
