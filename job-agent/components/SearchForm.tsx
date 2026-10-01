@@ -2,6 +2,11 @@
 
 import { useState } from "react";
 import SearchFilters from "@/components/SearchFilters";
+import {
+  validateSearchFilters,
+  type ValidationError,
+  type ValidationField,
+} from "@/lib/validation";
 import type {
   JobSearchFilters,
   ExperienceLevel,
@@ -30,7 +35,7 @@ export interface SearchFormProps {
  *
  * Implements the six search fields described in ORIGINAL_PLAN.md section 9:
  * Keywords, Location, Experience Level, Remote, Job Type, Date Posted.
- * Form state is fully controlled and typed as JobSearchFilters.
+ * Form state is fully controlled and validated via lib/validation.ts.
  */
 export default function SearchForm({
   initialFilters,
@@ -42,34 +47,60 @@ export default function SearchForm({
     ...initialFilters,
   });
 
+  const [errors, setErrors] = useState<readonly ValidationError[]>([]);
+
+  const getFieldError = (field: ValidationField): string | undefined => {
+    return errors.find((err) => err.field === field)?.message;
+  };
+
+  const clearFieldError = (field: ValidationField) => {
+    setErrors((prev) => prev.filter((err) => err.field !== field));
+  };
+
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    onSearch?.(filters);
+    const result = validateSearchFilters(filters);
+    if (!result.isValid) {
+      setErrors(result.errors);
+      return;
+    }
+    setErrors([]);
+    onSearch?.(result.sanitizedFilters ?? filters);
   };
 
   const handleKeywordsChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    clearFieldError("keywords");
     setFilters((prev) => ({ ...prev, keywords: event.target.value }));
   };
 
   const handleLocationChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    clearFieldError("keywords");
+    clearFieldError("location");
     setFilters((prev) => ({ ...prev, location: event.target.value }));
   };
 
   const handleExperienceLevelChange = (experienceLevel: ExperienceLevel) => {
+    clearFieldError("experienceLevel");
     setFilters((prev) => ({ ...prev, experienceLevel }));
   };
 
   const handleWorkArrangementChange = (workArrangement: WorkArrangement) => {
+    clearFieldError("workArrangement");
     setFilters((prev) => ({ ...prev, workArrangement }));
   };
 
   const handleJobTypeChange = (jobType: JobType) => {
+    clearFieldError("jobType");
     setFilters((prev) => ({ ...prev, jobType }));
   };
 
   const handleDatePostedChange = (datePosted: DatePosted) => {
+    clearFieldError("datePosted");
     setFilters((prev) => ({ ...prev, datePosted }));
   };
+
+  const keywordsError = getFieldError("keywords");
+  const locationError = getFieldError("location");
 
   return (
     <form onSubmit={handleSubmit} noValidate className="space-y-6">
@@ -88,10 +119,25 @@ export default function SearchForm({
           required
           disabled={isLoading}
           value={filters.keywords}
+          aria-invalid={keywordsError ? "true" : undefined}
+          aria-describedby={keywordsError ? "keywords-error" : undefined}
           onChange={handleKeywordsChange}
           placeholder="e.g. Software Engineer"
-          className="h-11 w-full rounded-md border border-foreground/20 bg-background px-3 text-base text-foreground sm:text-sm focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground disabled:cursor-not-allowed disabled:opacity-50"
+          className={`h-11 w-full rounded-md border bg-background px-3 text-base text-foreground sm:text-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 ${
+            keywordsError
+              ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+              : "border-foreground/20 focus:border-foreground focus:ring-foreground"
+          }`}
         />
+        {keywordsError && (
+          <p
+            id="keywords-error"
+            role="alert"
+            className="text-xs font-medium text-red-600 dark:text-red-400"
+          >
+            {keywordsError}
+          </p>
+        )}
       </div>
 
       {/* 2. Location */}
@@ -108,10 +154,25 @@ export default function SearchForm({
           type="text"
           disabled={isLoading}
           value={filters.location}
+          aria-invalid={locationError ? "true" : undefined}
+          aria-describedby={locationError ? "location-error" : undefined}
           onChange={handleLocationChange}
           placeholder="e.g. Chennai, India, or Remote"
-          className="h-11 w-full rounded-md border border-foreground/20 bg-background px-3 text-base text-foreground sm:text-sm focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground disabled:cursor-not-allowed disabled:opacity-50"
+          className={`h-11 w-full rounded-md border bg-background px-3 text-base text-foreground sm:text-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 ${
+            locationError
+              ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+              : "border-foreground/20 focus:border-foreground focus:ring-foreground"
+          }`}
         />
+        {locationError && (
+          <p
+            id="location-error"
+            role="alert"
+            className="text-xs font-medium text-red-600 dark:text-red-400"
+          >
+            {locationError}
+          </p>
+        )}
       </div>
 
       {/* 3–6. Four select filters */}
@@ -125,6 +186,12 @@ export default function SearchForm({
         datePosted={filters.datePosted}
         onDatePostedChange={handleDatePostedChange}
         disabled={isLoading}
+        errors={{
+          experienceLevel: getFieldError("experienceLevel"),
+          workArrangement: getFieldError("workArrangement"),
+          jobType: getFieldError("jobType"),
+          datePosted: getFieldError("datePosted"),
+        }}
       />
 
       {/* Submit button */}

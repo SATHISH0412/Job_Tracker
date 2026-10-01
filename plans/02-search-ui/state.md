@@ -18,7 +18,7 @@ The plan is DONE only when every task below is DONE.
 |---|---|---|---|
 | 2.1 | Header component | DONE | 2026-10-01 |
 | 2.2 | Search form component | DONE | 2026-10-01 |
-| 2.3 | Search form validation | NOT_STARTED | — |
+| 2.3 | Search form validation | DONE | 2026-10-01 |
 | 2.4 | Loading state | NOT_STARTED | — |
 | 2.5 | Error handling UI | NOT_STARTED | — |
 | 2.6 | Empty state | NOT_STARTED | — |
@@ -51,6 +51,10 @@ An unlogged deviation is a process failure — log it or don't do it.
   components with controlled JobSearchFilters state, exact options imported
   from types/job.ts, keyboard accessibility, preventDefault on submit,
   and mounted in app/page.tsx.
+- 2026-10-01: Task 2.3 DONE. Implemented pure framework-free validation in
+  `lib/validation.ts`, defined error message constants, and integrated
+  accessible inline error messaging (`aria-invalid`, `aria-describedby`,
+  `role="alert"`) into `SearchForm.tsx` and `SearchFilters.tsx`.
 
 ## Blockers
 
@@ -58,7 +62,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.3 (Search form validation).
+Start task 2.4 (Loading state).
 
 ## Notes
 

@@ -177,12 +177,12 @@ reusable module.
 
 ### Acceptance Criteria
 
-- [ ] An empty search shows a clear validation message and does not submit
-- [ ] Whitespace-only input is treated as empty
-- [ ] An out-of-list select value is rejected
-- [ ] Each error renders next to its field and is announced accessibly
-- [ ] `lib/validation.ts` has no React/DOM imports
-- [ ] Message strings are defined once, not duplicated in the component
+- [x] An empty search shows a clear validation message and does not submit
+- [x] Whitespace-only input is treated as empty
+- [x] An out-of-list select value is rejected
+- [x] Each error renders next to its field and is announced accessibly
+- [x] `lib/validation.ts` has no React/DOM imports
+- [x] Message strings are defined once, not duplicated in the component
 
 ### Out of Scope
 

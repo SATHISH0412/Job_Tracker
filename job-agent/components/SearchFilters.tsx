@@ -14,6 +14,7 @@ interface FilterConfig {
   readonly label: string;
   readonly value: string;
   readonly options: readonly string[];
+  readonly error?: string;
   readonly onChange: (value: string) => void;
 }
 
@@ -23,6 +24,9 @@ interface FilterSelectProps {
 }
 
 function FilterSelect({ config, disabled }: FilterSelectProps) {
+  const hasError = Boolean(config.error);
+  const errorId = `${config.id}-error`;
+
   return (
     <div className="flex flex-col gap-1.5">
       <label
@@ -36,8 +40,14 @@ function FilterSelect({ config, disabled }: FilterSelectProps) {
         name={config.id}
         value={config.value}
         disabled={disabled}
+        aria-invalid={hasError ? "true" : undefined}
+        aria-describedby={hasError ? errorId : undefined}
         onChange={(event) => config.onChange(event.target.value)}
-        className="h-11 w-full rounded-md border border-foreground/20 bg-background px-3 text-base text-foreground sm:text-sm focus:border-foreground focus:outline-none focus:ring-1 focus:ring-foreground disabled:cursor-not-allowed disabled:opacity-50"
+        className={`h-11 w-full rounded-md border bg-background px-3 text-base text-foreground sm:text-sm focus:outline-none focus:ring-1 disabled:cursor-not-allowed disabled:opacity-50 ${
+          hasError
+            ? "border-red-500 focus:border-red-500 focus:ring-red-500"
+            : "border-foreground/20 focus:border-foreground focus:ring-foreground"
+        }`}
       >
         {config.options.map((option) => (
           <option key={option} value={option}>
@@ -45,6 +55,11 @@ function FilterSelect({ config, disabled }: FilterSelectProps) {
           </option>
         ))}
       </select>
+      {hasError && (
+        <p id={errorId} role="alert" className="text-xs font-medium text-red-600 dark:text-red-400">
+          {config.error}
+        </p>
+      )}
     </div>
   );
 }
@@ -59,6 +74,12 @@ export interface SearchFiltersProps {
   readonly datePosted: DatePosted;
   readonly onDatePostedChange: (value: DatePosted) => void;
   readonly disabled?: boolean;
+  readonly errors?: {
+    readonly experienceLevel?: string;
+    readonly workArrangement?: string;
+    readonly jobType?: string;
+    readonly datePosted?: string;
+  };
 }
 
 /**
@@ -78,6 +99,7 @@ export default function SearchFilters({
   datePosted,
   onDatePostedChange,
   disabled = false,
+  errors,
 }: SearchFiltersProps) {
   const configs: readonly FilterConfig[] = [
     {
@@ -85,6 +107,7 @@ export default function SearchFilters({
       label: "Experience Level",
       value: experienceLevel,
       options: EXPERIENCE_LEVEL_OPTIONS,
+      error: errors?.experienceLevel,
       onChange: (val) => onExperienceLevelChange(val as ExperienceLevel),
     },
     {
@@ -92,6 +115,7 @@ export default function SearchFilters({
       label: "Remote",
       value: workArrangement,
       options: WORK_ARRANGEMENT_OPTIONS,
+      error: errors?.workArrangement,
       onChange: (val) => onWorkArrangementChange(val as WorkArrangement),
     },
     {
@@ -99,6 +123,7 @@ export default function SearchFilters({
       label: "Job Type",
       value: jobType,
       options: JOB_TYPE_OPTIONS,
+      error: errors?.jobType,
       onChange: (val) => onJobTypeChange(val as JobType),
     },
     {
@@ -106,6 +131,7 @@ export default function SearchFilters({
       label: "Date Posted",
       value: datePosted,
       options: DATE_POSTED_OPTIONS,
+      error: errors?.datePosted,
       onChange: (val) => onDatePostedChange(val as DatePosted),
     },
   ];
