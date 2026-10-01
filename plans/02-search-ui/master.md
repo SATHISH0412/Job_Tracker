@@ -3,7 +3,7 @@
 **Plan ID:** `02-search-ui`
 **Phase:** Phase 1 — Search UI
 **Version target:** V1
-**Status:** NOT_STARTED
+**Status:** DONE
 **Depends on:** `01-project-setup`
 **Source:** `ORIGINAL_PLAN.md` sections 8 (Frontend Design), 9 (Search Form), 10 (Search Validation), 12 (Loading State), 13 (Empty State), 14 (Error Handling), 16 (Responsive Design)
 
@@ -18,18 +18,18 @@ loading / error / empty state trio, and a responsive pass that works from
 
 ## Global Acceptance Criteria
 
-- [ ] All six filters render with the exact option values from section 9
-- [ ] Form state is typed via `types/job.ts` and fully controlled
-- [ ] An empty or whitespace-only search shows an inline message and does
+- [x] All six filters render with the exact option values from section 9
+- [x] Form state is typed via `types/job.ts` and fully controlled
+- [x] An empty or whitespace-only search shows an inline message and does
       not submit
-- [ ] The submit button is disabled with a visible indicator while a
+- [x] The submit button is disabled with a visible indicator while a
       search is in flight, and re-enables on both success and error
-- [ ] Every error case in section 14 maps to one concise user-facing
+- [x] Every error case in section 14 maps to one concise user-facing
       message with no stack trace, key, or internal detail
-- [ ] Empty-state copy never implies individual job records were fetched
+- [x] Empty-state copy never implies individual job records were fetched
       when only a search URL exists
-- [ ] No horizontal scrolling or overlap at 320px, 768px, 1024px, 1440px
-- [ ] `npm run lint` and the typecheck command pass
+- [x] No horizontal scrolling or overlap at 320px, 768px, 1024px, 1440px
+- [x] `npm run lint` and the typecheck command pass
 
 ## Out of Scope (for this plan)
 
@@ -365,12 +365,12 @@ mobile per section 16.
 
 ### Acceptance Criteria
 
-- [ ] No horizontal scrolling or overlapping elements at 320px, 768px,
+- [x] No horizontal scrolling or overlapping elements at 320px, 768px,
       1024px, 1440px
-- [ ] Mobile field order matches the section 16 mockup
-- [ ] Tap targets are ≥44px on touch viewports
-- [ ] No custom `@media` blocks were introduced in component CSS
-- [ ] The form remains usable with a 200% browser zoom
+- [x] Mobile field order matches the section 16 mockup
+- [x] Tap targets are ≥44px on touch viewports
+- [x] No custom `@media` blocks were introduced in component CSS
+- [x] The form remains usable with a 200% browser zoom
 
 ### Out of Scope
 
