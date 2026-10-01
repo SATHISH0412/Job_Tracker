@@ -3,6 +3,10 @@
 You are building **Personal LinkedIn Job Finder**, a private Next.js app.
 This file is your entry point. Read it fully before doing anything else.
 
+## Autonomous Execution and Permissions
+
+- The assistant is fully authorized to execute terminal commands, run builds, typechecks, linting, git staging, per-task git commits, and branch pushes automatically per the workflow in this document without asking the user for confirmation.
+
 ## 0. Reference material
 
 - `plans/ORIGINAL_PLAN.md` — the full original product plan (source of truth

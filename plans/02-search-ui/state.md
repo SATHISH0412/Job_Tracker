@@ -4,7 +4,7 @@
 
 ## Current Status
 
-NOT_STARTED
+IN_PROGRESS
 
 <!--
 Allowed values: NOT_STARTED | IN_PROGRESS | BLOCKED | IN_REVIEW | DONE
@@ -16,7 +16,7 @@ The plan is DONE only when every task below is DONE.
 
 | # | Task | Status | Completed |
 |---|---|---|---|
-| 2.1 | Header component | NOT_STARTED | — |
+| 2.1 | Header component | DONE | 2026-10-01 |
 | 2.2 | Search form component | NOT_STARTED | — |
 | 2.3 | Search form validation | NOT_STARTED | — |
 | 2.4 | Loading state | NOT_STARTED | — |
@@ -26,7 +26,7 @@ The plan is DONE only when every task below is DONE.
 
 ## Last Updated
 
-(not started yet)
+2026-10-01
 
 ## Deviation Log
 
@@ -39,7 +39,14 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Progress Log
 
-- (empty — append a dated one-line entry here on every touch of this plan)
+- 2026-09-26: Plan opened. `01-project-setup` PR #1 merged into `dev`
+  (merge commit `b1c2422`), so plan 01 is DONE and this plan is unblocked.
+  Created branch `feature/02-search-ui/search-interface` from the updated
+  `dev`. Started task 2.1 (header).
+- 2026-10-01: Task 2.1 DONE. Implemented Header as a Server Component in
+  `components/Header.tsx` and mounted in `app/layout.tsx`. Verified Search
+  active item, disabled future nav items with aria-disabled, responsive
+  reflow without horizontal scroll, typecheck, lint, and build pass cleanly.
 
 ## Blockers
 
@@ -47,7 +54,7 @@ An unlogged deviation is a process failure — log it or don't do it.
 
 ## Next Action
 
-Start task 2.1 (header) once `01-project-setup` is DONE.
+Start task 2.2 (Search form component).
 
 ## Notes
 

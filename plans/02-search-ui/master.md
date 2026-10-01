@@ -63,11 +63,11 @@ section 8.
 
 ### Acceptance Criteria
 
-- [ ] `components/Header.tsx` exists and is rendered from `app/layout.tsx`
-- [ ] `JobFinder` and the `Search` nav item are visible on every page
-- [ ] Future-only items cannot be activated and are visually distinguished
-- [ ] Header reflows without horizontal scroll at 320px
-- [ ] Header is a Server Component (no `"use client"`)
+- [x] `components/Header.tsx` exists and is rendered from `app/layout.tsx`
+- [x] `JobFinder` and the `Search` nav item are visible on every page
+- [x] Future-only items cannot be activated and are visually distinguished
+- [x] Header reflows without horizontal scroll at 320px
+- [x] Header is a Server Component (no `"use client"`)
 
 ### Out of Scope
 

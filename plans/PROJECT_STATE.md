@@ -8,8 +8,8 @@ A plan is `DONE` only when every task in its `state.md` Task Status table is
 
 | # | Plan ID | Name | Version | Depends on | Status | Tasks |
 |---|---|---|---|---|---|---|
-| 1 | `01-project-setup` | Project Setup | V1 | none | IN_REVIEW | 5/5 |
-| 2 | `02-search-ui` | Search UI | V1 | 01 | NOT_STARTED | 0/7 |
+| 1 | `01-project-setup` | Project Setup | V1 | none | DONE | 5/5 |
+| 2 | `02-search-ui` | Search UI | V1 | 01 | IN_PROGRESS | 1/7 |
 | 3 | `03-linkedin-search` | LinkedIn Search Integration | V1 | 02 | NOT_STARTED | 0/6 |
 | 4 | `04-private-access-and-handoff` | Private Access and Handoff | V1 | 01 (and 03 for tasks 4.2–4.5) | NOT_STARTED | 0/5 |
 | 5 | `05-job-persistence` | Job Persistence | V1.1 / V2 | 04 | NOT_STARTED | 0/6 |
@@ -81,4 +81,7 @@ Plans `05`–`11` must not be started before that report.
   `strict: true`, zero `any` in source, one `globals.css` import) and ticked
   them in `master.md`. **`01-project-setup` is DONE, 5/5 tasks, 8/8 global
   criteria.** V1 stands at 5 of 23 tasks — next is `02-search-ui` task 2.1.
+- 2026-10-01: `02-search-ui` task 2.1 DONE — Header component implemented as a
+  Server Component in `components/Header.tsx`, mounted in `app/layout.tsx`.
+  All 5 criteria verified. V1 stands at 6 of 23 tasks.
 
