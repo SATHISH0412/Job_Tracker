@@ -30,7 +30,9 @@ Plans `05`–`11` must not be started before that report.
 
 ## Open items requiring a decision
 
-- **Plan 03 completed.** Ready for feature branch commit and PR opening into `dev`.
+- **Plan 03 PR #3** opened into `dev`:
+  https://github.com/SATHISH0412/Job_Tracker/pull/3 (awaiting user review
+  and merge).
 - **Plan 02 PR #2** was merged into `dev` (commit `b09d346`).
 - **Plan 01 PR #1** was merged into `dev` (commit `b1c2422`).
 - **Branch protection.** Not enabled on `main` or `dev`. The "protected
@@ -110,4 +112,6 @@ Plans `05`–`11` must not be started before that report.
   Tested across full matrix of realistic and edge filter combinations. All 8 Global
   Acceptance Criteria and 33 task criteria verified. **`03-linkedin-search` is DONE,
   6/6 tasks.** V1 stands at 18 of 23 tasks. Next is `04-private-access-and-handoff`.
+- 2026-10-10: Opened plan 03 PR #3 into `dev` and recorded the URL above.
+  V1 stands at 18 of 23 tasks; next is `04-private-access-and-handoff`.
 
