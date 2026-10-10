@@ -3,7 +3,7 @@
 **Plan ID:** `03-linkedin-search`
 **Phase:** Phase 2 — LinkedIn Search Integration
 **Version target:** V1
-**Status:** NOT_STARTED
+**Status:** DONE
 **Depends on:** `02-search-ui`
 **Source:** `ORIGINAL_PLAN.md` sections 5 (LinkedIn Search Strategy), 6 (High-Level Architecture), 10 (Search Validation), 11 (Job Result Design), 15 (Security → URL safety)
 
@@ -19,18 +19,18 @@ search URL was produced.
 
 ## Global Acceptance Criteria
 
-- [ ] `lib/linkedin.ts` maps every filter to its LinkedIn parameter and
+- [x] `lib/linkedin.ts` maps every filter to its LinkedIn parameter and
       returns a parameter object; it has no React or Next.js imports
-- [ ] The generated URL opens on LinkedIn and returns results matching
+- [x] The generated URL opens on LinkedIn and returns results matching
       every filter that was set
-- [ ] `Any` options are omitted from the URL entirely, not sent as a value
-- [ ] Special characters, spaces, symbols, and non-ASCII in keywords and
+- [x] `Any` options are omitted from the URL entirely, not sent as a value
+- [x] Special characters, spaces, symbols, and non-ASCII in keywords and
       location produce a valid URL
-- [ ] The API route re-validates server-side and returns 4xx with a
+- [x] The API route re-validates server-side and returns 4xx with a
       structured `{ code, message }` error and never a stack trace
-- [ ] UI copy never claims job records were retrieved when only a URL exists
-- [ ] Every documented filter combination in section 9 produces a valid URL
-- [ ] `npm run lint` and the typecheck command pass
+- [x] UI copy never claims job records were retrieved when only a URL exists
+- [x] Every documented filter combination in section 9 produces a valid URL
+- [x] `npm run lint` and the typecheck command pass
 
 ## Out of Scope (for this plan)
 
@@ -108,16 +108,16 @@ parameters, per section 5.
 
 ### Acceptance Criteria
 
-- [ ] `lib/linkedin.ts` exports a function that takes validated filters
+- [x] `lib/linkedin.ts` exports a function that takes validated filters
       and returns a parameter object
-- [ ] Every filter in `types/job.ts` has a mapping or is deliberately
+- [x] Every filter in `types/job.ts` has a mapping or is deliberately
       omitted
-- [ ] `Any` options are omitted, not sent as empty/`0` values
-- [ ] An unknown filter value throws a named error rather than passing
+- [x] `Any` options are omitted, not sent as empty/`0` values
+- [x] An unknown filter value throws a named error rather than passing
       through
-- [ ] The file imports nothing from React or Next.js
-- [ ] Each mapping has a comment recording the verified LinkedIn source URL
-- [ ] Manual testing covers every filter value listed in section 9
+- [x] The file imports nothing from React or Next.js
+- [x] Each mapping has a comment recording the verified LinkedIn source URL
+- [x] Manual testing covers every filter value listed in section 9
 
 ### Out of Scope
 
@@ -167,12 +167,12 @@ Safely assemble the final LinkedIn search URL per sections 10 and 15
 
 ### Acceptance Criteria
 
-- [ ] Spaces, symbols, and non-ASCII in keywords/location produce a valid URL
-- [ ] No unvalidated input reaches the URL builder
-- [ ] A non-LinkedIn or unparseable URL causes a named error, not a
+- [x] Spaces, symbols, and non-ASCII in keywords/location produce a valid URL
+- [x] No unvalidated input reaches the URL builder
+- [x] A non-LinkedIn or unparseable URL causes a named error, not a
       returned bad link
-- [ ] Identical filters always produce a byte-identical URL
-- [ ] Round-tripping the URL yields the original keyword and location values
+- [x] Identical filters always produce a byte-identical URL
+- [x] Round-tripping the URL yields the original keyword and location values
 
 ### Out of Scope
 
@@ -224,13 +224,13 @@ section 6.
 
 ### Acceptance Criteria
 
-- [ ] `POST` with valid filters returns a correct LinkedIn search URL
-- [ ] Invalid input returns 4xx with a friendly structured error, never a
+- [x] `POST` with valid filters returns a correct LinkedIn search URL
+- [x] Invalid input returns 4xx with a friendly structured error, never a
       stack trace
-- [ ] No secret or internal error detail appears in any response body
-- [ ] The handler contains no URL-building or validation logic of its own
-- [ ] Server-side validation reuses `lib/validation.ts`
-- [ ] The response echoes the *normalised* filters, not the raw input
+- [x] No secret or internal error detail appears in any response body
+- [x] The handler contains no URL-building or validation logic of its own
+- [x] Server-side validation reuses `lib/validation.ts`
+- [x] The response echoes the *normalised* filters, not the raw input
 
 ### Out of Scope
 
@@ -281,12 +281,12 @@ Build the results list and card UI per section 11.
 
 ### Acceptance Criteria
 
-- [ ] Card layout matches the section 11 mockup
-- [ ] Copy never overstates what data was actually retrieved
-- [ ] The `Search LinkedIn` label is used when only a URL is available
-- [ ] `Search Again` returns to the form with filters intact
-- [ ] No fabricated placeholder job data exists anywhere in the code
-- [ ] `JobResults` and `JobCard` are typed against a shared `Job`/
+- [x] Card layout matches the section 11 mockup
+- [x] Copy never overstates what data was actually retrieved
+- [x] The `Search LinkedIn` label is used when only a URL is available
+- [x] `Search Again` returns to the form with filters intact
+- [x] No fabricated placeholder job data exists anywhere in the code
+- [x] `JobResults` and `JobCard` are typed against a shared `Job`/
         `SearchResult` type from `types/job.ts`
 
 ### Out of Scope
@@ -334,11 +334,11 @@ search in a new tab.
 
 ### Acceptance Criteria
 
-- [ ] Clicking the button opens the correct LinkedIn search URL in a new tab
-- [ ] Failure to generate a URL shows the error state instead of a broken link
-- [ ] A non-LinkedIn URL in the response is rejected before rendering
-- [ ] The link has `target="_blank"` and `rel="noopener noreferrer"`
-- [ ] The action is keyboard reachable and announces its destination
+- [x] Clicking the button opens the correct LinkedIn search URL in a new tab
+- [x] Failure to generate a URL shows the error state instead of a broken link
+- [x] A non-LinkedIn URL in the response is rejected before rendering
+- [x] The link has `target="_blank"` and `rel="noopener noreferrer"`
+- [x] The action is keyboard reachable and announces its destination
 
 ### Out of Scope
 
@@ -392,13 +392,13 @@ cases before V1 is called done.
 
 ### Acceptance Criteria
 
-- [ ] Every documented example filter combination produces a valid, correct
+- [x] Every documented example filter combination produces a valid, correct
       LinkedIn URL
-- [ ] Edge cases neither crash the form nor the API route
-- [ ] Special-character keywords round-trip correctly through the URL
-- [ ] All-`Any` filters produce a bare, valid search URL
-- [ ] The verified mapping table is recorded in this plan's `state.md`
-- [ ] Results found are verified to actually respect the filters, not just
+- [x] Edge cases neither crash the form nor the API route
+- [x] Special-character keywords round-trip correctly through the URL
+- [x] All-`Any` filters produce a bare, valid search URL
+- [x] The verified mapping table is recorded in this plan's `state.md`
+- [x] Results found are verified to actually respect the filters, not just
       produce a well-formed URL
 
 ### Out of Scope

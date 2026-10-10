@@ -1,13 +1,50 @@
 "use client";
 
+import { useState } from "react";
 import SearchForm from "@/components/SearchForm";
-import type { JobSearchFilters } from "@/types/job";
+import JobResults from "@/components/JobResults";
+import type { JobSearchFilters, SearchResult } from "@/types/job";
+import type { SearchErrorCode } from "@/lib/errors";
 
 export default function Home() {
-  const handleSearch = (filters: JobSearchFilters) => {
-    // Search handler called with current filter values.
-    // In 03-linkedin-search, this delegates to /api/linkedin/search.
-    void filters;
+  const [result, setResult] = useState<SearchResult | null>(null);
+  const [activeFilters, setActiveFilters] = useState<JobSearchFilters | undefined>(undefined);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState<SearchErrorCode | null>(null);
+
+  const handleSearch = async (filters: JobSearchFilters) => {
+    setIsLoading(true);
+    setError(null);
+    setActiveFilters(filters);
+
+    try {
+      const response = await fetch("/api/linkedin/search", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(filters),
+      });
+
+      if (!response.ok) {
+        const errorData = await response.json().catch(() => null);
+        const code: SearchErrorCode = errorData?.code ?? "SERVER_ERROR";
+        setError(code);
+        return;
+      }
+
+      const searchResult: SearchResult = await response.json();
+      setResult(searchResult);
+    } catch {
+      setError("NETWORK_FAILURE");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleSearchAgain = () => {
+    setResult(null);
+    setError(null);
   };
 
   return (
@@ -22,7 +59,21 @@ export default function Home() {
           </p>
         </header>
 
-        <SearchForm onSearch={handleSearch} />
+        {result ? (
+          <JobResults
+            result={result}
+            onSearchAgain={handleSearchAgain}
+            isLoading={isLoading}
+          />
+        ) : (
+          <SearchForm
+            initialFilters={activeFilters}
+            onSearch={handleSearch}
+            isLoading={isLoading}
+            error={error}
+            onClearError={() => setError(null)}
+          />
+        )}
       </div>
     </main>
   );
